@@ -36,16 +36,6 @@ input[type="checkbox"] + label
     cursor:pointer;
 }
 
-.save > a
-{
-   background-size: 32px 32px;
-    height: 32px;
-    width: 32px;
-    display:inline-block;
-    padding: 0 0 0 0px;
-    cursor:pointer;
-}
-
 input[type="file"] + label
 {
    background-size: 32px 32px;
@@ -57,7 +47,7 @@ input[type="file"] + label
 }
 
 
-.save > a, .info > a
+.save > a, .info > a, .clear_map > a
 {
    background-size: 32px 32px;
     height: 32px;
@@ -130,6 +120,7 @@ input[type="file"]:checked + label {
 	 background-image:url(../img/block_overflow.png);
 }
 
+
 .import > input[type="file"] + label {
 	 background-image:url(../img/import.png);
 }
@@ -149,6 +140,11 @@ input[type="file"]:checked + label {
 .save > a {
 	 background-image:url(../img/save.png);
 }
+
+.clear_map > a {
+	 background-image:url(../img/clear.png);
+}
+
 
 .info > a {
 	 background-image:url(../img/info.png);

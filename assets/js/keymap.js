@@ -6,7 +6,7 @@ document.querySelector("*").addEventListener('keydown', e => {
 	   // Prevent the Save dialog to open
 	   e.preventDefault();
 	   // Place your code here
-	   saveMap();
+	   saveMap(true);
    
 	 
 	 } else if(e.key === 'e') {

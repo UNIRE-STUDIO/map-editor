@@ -1,6 +1,9 @@
-function saveMap() {
+function saveMap(ctrl = false) {
+	
+	saveToLocalStorage();
+	
 	let dataStr = '';
-let dlAnchorElem = document.getElementById('downloadAnchorElem');
+	let dlAnchorElem = document.getElementById('downloadAnchorElem');
 
 		switch(display_type) {
 			case 'custom':
@@ -17,6 +20,12 @@ let dlAnchorElem = document.getElementById('downloadAnchorElem');
 		}
 
 		dlAnchorElem.setAttribute("href", dataStr);
-
-		dlAnchorElem.click();
+		if(ctrl)
+		 dlAnchorElem.click();
 };
+
+
+function saveToLocalStorage() {
+	localStorage.setItem("map", JSON.stringify(generated_map));
+}
+

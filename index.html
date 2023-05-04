@@ -19,7 +19,7 @@
 <div title="Количество строк" class="tool size_y">
  <label for="size_y"></label>
   <input type="number"  onchange="tableCreate()" id="size_y" name="size_y" value="10">
- </div>
+</div>
 
 
 <fieldset id="tools">
@@ -83,6 +83,10 @@
 	<label for="overflow_blocker"></label>
 </div>
  
+<div title="Удаление карты" class="tool clear_map">
+  <a onclick="clearMap()"id="clear_map"></a>
+</div>
+ 
  <div title="Справка" class="tool info">
   <a href="#info"></a>
 </div>
@@ -109,7 +113,7 @@
 		- Внизу эрана закреплена панель вывода<br>
 		- В верху экрана закреплена панель иструментов<br>
 		- В центре редактируемая карта<br>
-
+		- Каждую минуту карта сохраняется в LocalStorage
 		</p>
         <table>
 		<tr>
@@ -282,6 +286,18 @@
 		
 		<tr>
 			<td>
+		<img src="assets/img/clear.png" alt=""/>
+			</td>
+			<td>
+				Сбросить карту до значения "по умолчанию".
+			</td>
+			<td>
+				Нет
+			</td>
+		</tr>
+		
+		<tr>
+			<td>
 		<img src="assets/img/info.png" alt=""/>
 			</td>
 			<td>
@@ -291,14 +307,12 @@
 				Нет
 			</td>
 		</tr>
-		
 			</table>					
 		
     </div>
 </div>
 
 <script src="assets/js/editor/tool/elements.js"></script>
-
 <script src="assets/js/additional.js"></script>
 
 <script src="assets/js/element.js"></script>

@@ -18,3 +18,12 @@ function import_data()
     }
 }
 
+function import_from_local() {
+		if (localStorage.getItem("map")) {
+			let storaged_map = localStorage.getItem("map");
+			generated_map = JSON.parse(storaged_map);
+			displayMap();
+			rerenderEditor();
+		}
+}
+

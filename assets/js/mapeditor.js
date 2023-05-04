@@ -1,6 +1,6 @@
 let size_y;
 let size_x;
-let selected_tool;
+let selected_tool = undefined;
 let generated_map = [];
 let display_type = "json";//json
 let matrix_map = [];
@@ -35,9 +35,30 @@ document.addEventListener("DOMContentLoaded", (event) => {
 		 displayMap();
 	});
 
+
+	//autosave 60 sec
+	setInterval( () => {
+		if(generated_map) {
+			saveToLocalStorage();
+		}
+	}, 60000);
+
+
+	import_from_local();
+	
+	console.log(generated_map);
+
 //Запуск режима карандаша	
 startPencilMode();
 });
+
+
+function clearMap() {
+	localStorage.removeItem("map");
+
+	window.location.reload();
+}
+
 
 
 
