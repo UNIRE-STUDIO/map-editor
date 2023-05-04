@@ -1,0 +1,307 @@
+body {
+     max-width:100%;
+     max-height:100%;
+     overflow:auto;
+}
+
+input[type="radio"]{
+   display:none;
+}
+
+input[type="checkbox"]{
+   display:none;
+}
+
+input[type="file"]{
+   display:none;
+}
+
+input[type="radio"] + label
+{
+   background-size: 32px 32px;
+    height: 32px;
+    width: 32px;
+    display:inline-block;
+    padding: 0 0 0 0px;
+    cursor:pointer;
+}
+
+input[type="checkbox"] + label
+{
+   background-size: 32px 32px;
+    height: 32px;
+    width: 32px;
+    display:inline-block;
+    padding: 0 0 0 0px;
+    cursor:pointer;
+}
+
+.save > a
+{
+   background-size: 32px 32px;
+    height: 32px;
+    width: 32px;
+    display:inline-block;
+    padding: 0 0 0 0px;
+    cursor:pointer;
+}
+
+input[type="file"] + label
+{
+   background-size: 32px 32px;
+    height: 32px;
+    width: 32px;
+    display:inline-block;
+    padding: 0 0 0 0px;
+    cursor:pointer;
+}
+
+
+.save > a, .info > a
+{
+   background-size: 32px 32px;
+    height: 32px;
+    width: 32px;
+    display:inline-block;
+    padding: 0 0 0 0px;
+    cursor:pointer;
+}
+
+.size_y, .size_x
+{
+   display: flex;
+}
+
+.size_y > label, .size_x > label
+{
+   background-size: 32px 32px;
+    height: 32px;
+    width: 32px;
+    display:inline-block;
+    padding: 0 0 0 0px;
+    cursor:pointer;
+}
+
+input:hover + label, .save > a:hover {
+   background-color: #afafaf;
+}
+
+input[type="radio"]:checked + label {
+   background-color: #bfbfbf;
+}
+
+input[type="checkbox"]:checked + label {
+   background-color: #bfbfbf;
+}
+
+input[type="file"]:checked + label {
+   background-color: #bfbfbf;
+}
+
+.lastik > input[type="radio"] + label {
+	 background-image:url(../img/lastik.png);    
+}
+
+.cursor > input[type="radio"] + label {
+	 background-image:url(../img/cursor.png);
+    
+}
+
+.element1 > input[type="radio"] + label {
+	 background-image:url(../img/element_1.png);
+    
+}
+
+.element2 > input[type="radio"] + label {
+	 background-image:url(../img/element_2.png);
+    
+}
+
+.element3 > input[type="radio"] + label {
+	 background-image:url(../img/element_3.png);
+    
+}
+
+.element4 > input[type="radio"] + label {
+	 background-image:url(../img/element_4.png);
+    
+}
+
+.element5 > input[type="radio"] + label {
+	 background-image:url(../img/element_5.png);
+    
+}
+
+.overflow_blocker > input[type="checkbox"] + label {
+	 background-image:url(../img/block_overflow.png);
+    
+}
+
+.import > input[type="file"] + label {
+	 background-image:url(../img/import.png);
+    
+}
+
+
+.size_y > label
+{
+	 background-image:url(../img/size_y.png);
+
+}
+
+.size_x > label
+{
+ background-image:url(../img/size_x.png);
+
+}
+
+
+.save > a {
+	 background-image:url(../img/save.png);
+}
+
+.info > a {
+	 background-image:url(../img/info.png);
+}
+
+.panel {
+	position:fixed;
+	background-color: white;
+	border: 2px solid  #a0a0a0;
+	display: inline-flex;
+	align-items:center;
+	z-index: 100;
+	padding-left: 20px;
+	padding-right: 20px;
+	
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.top_fix {
+    position: relative;
+    width: 100%;
+    z-index: -10;
+    height: 70px;
+}
+
+.panel > * {
+	display: inline-flex;
+}
+
+fieldset {
+	border: none;
+	display: inline-block;
+	padding: unset;
+	margin: unset;
+}
+
+.tool {
+	display: inline-block;
+	margin-left: 10px;
+}
+
+.map {
+	overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+td {
+  position: relative;
+}
+td .content {
+  aspect-ratio: 1 / 1 ;
+}
+
+#size_x, #size_y {
+	width: 90px;
+	display: inline-flex!important;
+}
+
+.size_x, .size_y {
+	display: inline-flex!important;
+}
+
+textarea#result {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 300px;
+}
+
+
+.modalbackground {
+margin: 0; 
+padding: 0; 
+position: fixed; 
+top:0;
+bottom:0;
+left:0;
+right:0;
+background: rgba(0,0,0,0.5); 
+z-index:100; 
+opacity:0;
+pointer-events: none;
+	overflow: auto;
+}
+
+
+.modalbackground:target {
+    opacity: 1; 
+    pointer-events: auto; 
+}
+
+
+.modalwindow {
+	position: absolute;
+	top: 100px;
+	left: calc(50% - 300px);
+    width: 100%;
+    max-width: 600px;
+    margin: 10% auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 3px;
+
+}
+
+
+.modalwindow h3 {
+padding: 0;
+margin: 0;
+}
+
+
+.modalwindow p {
+padding: 0;
+margin: 4% 0 8% 0;
+}
+
+
+.modalwindow a {
+text-align: center;
+text-decoration: none;
+}
+
+
+.modalwindow a:hover {
+background: #47a;
+}
+
+.modalwindow .modalheader {
+	display: flex;
+	justify-content: space-between;
+	margin: 10px 10px 0 10px;
+}
+
+.modalwindow table td, .modalwindow table th, .modalwindow table {
+	border: 1px solid #d2d2d2;
+	padding: 5px;
+}
+
+#map_container {
+   margin-bottom: 200px!important;
+   margin-right: 200px!important;
+}
