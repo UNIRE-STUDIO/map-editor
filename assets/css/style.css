@@ -4,6 +4,11 @@ body {
      overflow:auto;
 }
 
+#map_selector {
+	display: flex;
+	overflow: auto;
+}
+
 input[type="radio"]{
    display:none;
 }
@@ -19,11 +24,21 @@ input[type="file"]{
 input[type="radio"] + label
 {
    background-size: 32px 32px;
-    height: 32px;
-    width: 32px;
-    display:inline-block;
-    padding: 0 0 0 0px;
-    cursor:pointer;
+   height: 32px;
+   width: 32px;
+   display:inline-block;
+   padding: 0 0 0 0px;
+   cursor:pointer;
+   border-radius: 3px;
+   text-align: center;
+   align-items: center;
+   display: flex;
+   flex-direction: row;
+   font-family: sans-serif;
+   font-weight: 700;
+   justify-content: center;
+   color: white;
+   font-size: 1.5rem;
 }
 
 input[type="checkbox"] + label
@@ -171,14 +186,19 @@ input[type="file"]:checked + label {
 
 fieldset {
 	border: none;
-	display: inline-block;
+	display: inline-flex;
 	padding: unset;
 	margin: unset;
 }
 
 .tool {
-	display: inline-block;
+	display: inline-flex;
 	margin-left: 10px;
+}
+
+.mapslist {
+display: inline-block;
+margin-left: 10px;
 }
 
 .map {
@@ -283,7 +303,7 @@ background: #47a;
 
 #map_container {
 	position: relative;
-	height: 70vh;
+	height: 67vh;
 	overflow: auto!important;
 	max-width:100%;
 	word-wrap:break-word;

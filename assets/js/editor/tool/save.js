@@ -26,6 +26,6 @@ function saveMap(ctrl = false) {
 
 
 function saveToLocalStorage() {
-	localStorage.setItem("map", JSON.stringify(generated_map));
+	localStorage.setItem("mapeditor", JSON.stringify(generated_map));
 }
 

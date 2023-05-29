@@ -46,3 +46,16 @@ function SortByProps(item1, item2) {
     return 0;          
 
 }
+
+function hashCode(str) {
+    let hash = 0;
+    for (var i = 0; i < str.length; i++) {
+      hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return hash;
+  }
+  
+  function pickColor(str) {
+    // Note the last value here is now 50% instead of 80%
+    return `hsl(${hashCode(str) % 360}, 100%, 50%)`;
+  }

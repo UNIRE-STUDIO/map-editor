@@ -13,12 +13,12 @@
 <div title="Количество ячеек" class="tool size_x">
 <label for="size_x"></label>
 
-  <input type="number"  onchange="tableCreate()"id="size_x" name="size_x" value="10">
+  <input type="number"  onchange="changeXSize()"id="size_x" name="size_x" value="10">
 </div>
 
 <div title="Количество строк" class="tool size_y">
  <label for="size_y"></label>
-  <input type="number"  onchange="tableCreate()" id="size_y" name="size_y" value="10">
+  <input type="number"  onchange="changeYSize()" id="size_y" name="size_y" value="10">
 </div>
 
 
@@ -94,10 +94,25 @@
 
 </section>
 
+
+
 <section id="map_container">
 <table id="map">
 </table>
 </section>
+
+
+<section id="map_selector">
+	
+		<div title="Добавить карту" class="tool createMap">
+			<input onchange="createMap()" type="checkbox" id="createMap" value=6 name="createMap" />
+			<label for="createMap" style="background-image: url('assets/img/addlevel.png')"></label>
+		  </div>
+		  
+	<fieldset id="cmap">
+	</fieldset>
+</section>
+	
 
 <textarea id="result">
 </textarea>
@@ -311,9 +326,9 @@
 		
     </div>
 </div>
+<script src="assets/js/additional.js"></script>
 
 <script src="assets/js/editor/tool/elements.js"></script>
-<script src="assets/js/additional.js"></script>
 
 <script src="assets/js/element.js"></script>
 

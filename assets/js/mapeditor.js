@@ -1,12 +1,13 @@
-let size_y;
-let size_x;
+let size_y = 10;
+let size_x = 10;
 let selected_tool = undefined;
-let generated_map = [];
+let generated_map = [[]];
 let display_type = "json";//json
 let matrix_map = [];
 let custom_map_display = '';
 let pencil_mode = false;
 let overflow_block = false;
+let map_element = 0;
 const max_map_size = 300;
 
 let MoskaParser = FormantMoska;
@@ -38,14 +39,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 	//autosave 60 sec
 	setInterval( () => {
-		if(generated_map) {
+		if(typeof generated_map[map_element] !== 'undefined') {
 			saveToLocalStorage();
 		}
 	}, 60000);
 
 
 	import_from_local();
-	
+
+	levelsloader();
+
 	console.log(generated_map);
 
 //Запуск режима карандаша	
@@ -54,7 +57,7 @@ startPencilMode();
 
 
 function clearMap() {
-	localStorage.removeItem("map");
+	localStorage.removeItem("mapeditor");
 
 	window.location.reload();
 }
@@ -69,11 +72,10 @@ function clearMap() {
 //////////////////////////////////////////////////////
 
 //Создание карты по размеру
-function tableCreate() {
- 
- 
-size_y = document.getElementById("size_y").value; 
-size_x = document.getElementById("size_x").value;
+function tableCreate(no_resize = false) {
+
+if(!no_resize)
+	sizerecalc();
 
 if(size_y > max_map_size ) {
 	size_y = max_map_size;
@@ -122,62 +124,12 @@ if(size_x > max_map_size ) {
 }
  
 function mapSortMode(propOrders) {
-        generated_map.sort(function (a, b) {
+        generated_map[map_element].sort(function (a, b) {
             return SortByProps(a, b, propOrders);
         });
 }
 
 
-function tableChange(event) {
-	let x = event.target.cellIndex;
-	let y = event.target.parentNode.rowIndex;
-	let skip = false;
-
-	if(!selected_tool) {
-		skip = true;
-	}
-	
-	//Игнор занятых элементов
-	for (var index in generated_map) {
-		if(selected_tool.length >= 1  && selected_tool !== 'lastik' && generated_map[index].x === x && generated_map[index].y === y) {
-			skip = true;
-		}
-	}
-	
-	
-	
-	if(!skip) {
-	if(selected_tool && selected_tool == 'lastik') {
-	event.target.style.backgroundColor = "unset";
-	for (var index in generated_map) {
-		if(generated_map[index].x === x && generated_map[index].y === y) {
-			generated_map.splice(index, 1);
-		}
-	}
-	}
-	
-	
-
-	colSetStyle(event.target, selected_tool);
-
-	
-			
-		
-	if(selected_tool.length >= 1 && selected_tool !== 'lastik')
-		generated_map.push({'x': x,'y': y,'t':selected_tool});
-
-
-		
-	
-		
-	}	
-	try {
-		displayMap();
-	} catch(e) {
-	document.getElementById('result').innerHTML = 'Map Error. Fix map size';
-	}
-
-}
 
 function colSetStyle(col, selected_tool) {
 	let color = ElementModel.elementGetColorByName(selected_tool);
@@ -193,4 +145,34 @@ function tool(name){
 	selected_tool = undefined;	
 	else
 	selected_tool = name;
+}
+
+
+function changeMap(index){
+	if(typeof generated_map[index] !== 'undefined') {
+	map_element = index;
+	levelsloader();
+	tableCreate();
+	}
+}
+
+
+function createMap(){
+	generated_map.push([]);
+	map_element++;
+	levelsloader();
+	tableCreate(true);
+}
+
+function changeXSize(){
+	size_x = document.getElementById("size_x").value;
+	displayMap();
+	tableCreate(true);
+}
+
+
+function changeYSize(){
+	size_y = document.getElementById("size_y").value; 
+	displayMap();
+	tableCreate(true);
 }
