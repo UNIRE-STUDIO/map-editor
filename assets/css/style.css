@@ -155,7 +155,7 @@ input[type="file"]:checked + label {
 	padding-right: 20px;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	height: 5vh;
+	height:5vh;
 }
 
 
@@ -204,6 +204,7 @@ td .content {
 }
 
 textarea#result {
+	display: none;
 	position: relative;
 	bottom: 0;
 	width: 100%;
@@ -282,7 +283,7 @@ background: #47a;
 
 #map_container {
 	position: relative;
-	height: 67vh;
+	height: 75vh;
 	overflow: auto!important;
 	max-width:100%;
 	word-wrap:break-word;

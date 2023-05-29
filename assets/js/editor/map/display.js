@@ -40,7 +40,7 @@ function tableChange(event) {
 	try {
 		displayMap();
 	} catch(e) {
-	document.getElementById('result').innerHTML = 'Map Error. Fix map size';
+		alert('Map Error. Fix map size; ' + e.message);
 	}
 
 }
@@ -71,8 +71,8 @@ function displayMapData(display_mode) {
 
 
 async function displayMap() {
-	let result = document.getElementById('result');
-	result.innerHTML = await displayMapData(display_type);
+//	let result = document.getElementById('result');
+//	result.innerHTML = await displayMapData(display_type);
 }
 
 async function rerenderEditor() {
