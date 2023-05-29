@@ -57,5 +57,5 @@ function hashCode(str) {
   
   function pickColor(str) {
     // Note the last value here is now 50% instead of 80%
-    return `hsl(${hashCode(str) % 360}, 100%, 50%)`;
+    return `hsl(${hashCode(str) % 360}, 100%, 40%)`;
   }

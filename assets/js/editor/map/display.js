@@ -10,7 +10,7 @@ function tableChange(event) {
 	
 	//Игнор занятых элементов
 	for (var index in generated_map[map_element]) {
-		if(selected_tool.length >= 1  && selected_tool !== 'lastik' && generated_map[map_element][index].x === x && generated_map[map_element][index].y === y) {
+		if(typeof selected_tool !== 'undefined' && selected_tool !== 'lastik' && generated_map[map_element][index].x === x && generated_map[map_element][index].y === y) {
 			skip = true;
 		}
 	}
@@ -18,7 +18,7 @@ function tableChange(event) {
 	
 	
 	if(!skip) {
-	if(selected_tool && selected_tool == 'lastik') {
+	if(typeof selected_tool !== 'undefined' && selected_tool == 'lastik') {
 	event.target.style.backgroundColor = "unset";
 	for (var index in generated_map[map_element]) {
 		if(generated_map[map_element][index].x === x && generated_map[map_element][index].y === y) {
@@ -171,7 +171,7 @@ function levelsloader() {
 		
 		cmap2 += `
 			<div title="` + title +`" class="mapslist map`+ oname +`">
-	  <input onchange="changeMap('`+ oname +`')" type="radio" id="map`+ oname +`" value=`+oname+` name="changeMap" />
+	  <input onchange="changeMap('`+ oname +`')" `+(map_element == index ? 'checked' : '')+` type="radio" id="map`+ oname +`" value=`+oname+` name="maplev" />
 	  <label for="map`+ oname +`" style="">`+oname+`</label>
 	</div>
 	`;
@@ -179,13 +179,15 @@ function levelsloader() {
 			style += `
 			input#map`+ oname +` + label {
 			background-color: `+pickColor(('map'+new Array(oname + 1).join( oname )))+`;
+			opacity: 0.6;	
 			}
 			input#map`+ oname +`:checked + label {
-				opacity: 0.6;
+				opacity: 1;	
 			}
 			`;
 
 	});
+	
 	cmap.innerHTML = `<style>`+style+`</style>` + cmap2;
 
 	}

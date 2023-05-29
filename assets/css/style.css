@@ -21,8 +21,7 @@ input[type="file"]{
    display:none;
 }
 
-input[type="radio"] + label
-{
+input[type="radio"] + label {
    background-size: 32px 32px;
    height: 32px;
    width: 32px;
@@ -109,26 +108,6 @@ input[type="file"]:checked + label {
 
 .cursor > input[type="radio"] + label {
 	 background-image:url(../img/cursor.png);
-}
-
-.element1 > input[type="radio"] + label {
-	 background-image:url(../img/element_1.png);
-}
-
-.element2 > input[type="radio"] + label {
-	 background-image:url(../img/element_2.png);
-}
-
-.element3 > input[type="radio"] + label {
-	 background-image:url(../img/element_3.png);
-}
-
-.element4 > input[type="radio"] + label {
-	 background-image:url(../img/element_4.png);
-}
-
-.element5 > input[type="radio"] + label {
-	 background-image:url(../img/element_5.png);
 }
 
 .overflow_blocker > input[type="checkbox"] + label {
