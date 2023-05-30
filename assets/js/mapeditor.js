@@ -132,9 +132,8 @@ if(size_x > max_map_size ) {
  
  tbl.innerHTML = '';
  
-
- tbl.style.width = (size_x * cell_size_x+) + 'px';
- tbl.style.height = (size_y *cell_size_y) + 'px';
+ tbl.style.width = (size_x * (cell_size_x+5)) + 'px';
+ tbl.style.height = (size_y * (cell_size_y+5)) + 'px';
 
  tbl.style.border = '1px solid #3F3F3F';
   for (let i = 0; i < size_y; i++) {
