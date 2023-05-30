@@ -11,7 +11,8 @@ let pencil_mode = false;
 let overflow_block = false;
 let map_element = 0;
 const max_map_size = 300;
-
+let cell_size_x = 15;
+let cell_size_y = 15;
 let MoskaParser = FormantMoska;
 
 
@@ -131,9 +132,8 @@ if(size_x > max_map_size ) {
  
  tbl.innerHTML = '';
  
-
- tbl.style.width = (size_x * 20) + 'px';
- tbl.style.height = (size_y *20) + 'px';
+ tbl.style.width = (size_x * (cell_size_x+5)) + 'px';
+ tbl.style.height = (size_y * (cell_size_y+5)) + 'px';
 
  tbl.style.border = '1px solid #3F3F3F';
   for (let i = 0; i < size_y; i++) {
@@ -143,12 +143,13 @@ if(size_x > max_map_size ) {
         const td = tr.insertCell();
         td.appendChild(document.createTextNode(` `));
         td.style.border = '1px solid #3F3F3F';
-		td.style.width = "15px";
+		
 		td.className = cellclass;
 		td.id = 'm_'+i+'x'+j;
-		td.style.height = "15px";
-		td.style.maxWidth = "15px";
-		td.style.maxHeight = "15px";
+		td.style.width = cell_size_x+"px";
+		td.style.height = cell_size_y+"px";
+		td.style.maxWidth = cell_size_x+"px";
+		td.style.maxHeight = cell_size_y+"px";
 		//при изменении
 		td.onclick = function (event) {
 			tableChange(event);
@@ -214,6 +215,21 @@ function changeXSize(){
 
 function changeYSize(){
 	size_y = document.getElementById("size_y").value; 
+	displayMap();
+	tableCreate(true);
+	loadtools();
+}
+
+
+function changeXCellSize(){
+	cell_size_x = document.getElementById("cell_size_x").value;
+	displayMap();
+	tableCreate(true);
+	loadtools();
+}
+
+function changeYCellSize(){
+	cell_size_y = document.getElementById("cell_size_y").value; 
 	displayMap();
 	tableCreate(true);
 	loadtools();
