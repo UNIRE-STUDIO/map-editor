@@ -9,13 +9,14 @@ document.querySelector("*").addEventListener('keydown', e => {
 	   saveMap(true);
    
 	 
-	 } else if(e.key === 'e') {
-		 
-		 //Ластик
-		 document.getElementById("lastik").checked = true;
-		 document.getElementById("lastik").dispatchEvent(fake_event);
-		 
 	 }
+	//   else if(e.key === 'e') {
+		 
+	// 	 //Ластик
+	// 	 document.getElementById("lastik").checked = true;
+	// 	 document.getElementById("lastik").dispatchEvent(fake_event);
+		 
+	//  }
 	 
 	
 	ElementModel.setElements(ToolElements);

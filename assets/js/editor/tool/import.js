@@ -12,8 +12,38 @@ function import_data()
 			generated_map = JSON.parse(e.target.result);
 			//displayMap();
 			//rerenderEditor();
+			tableCreate();
+		};
+		
+        reader.readAsBinaryString(file.files[0]);
+    }
+}
 
-			sizerecalc();
+
+function import_tools()
+{
+    var file = document.getElementById('import_tools');
+    if(file.files.length)
+    {
+        var reader = new FileReader();
+        
+		reader.onload = function(e)
+        {
+			ToolElements = JSON.parse(e.target.result);
+			
+			//displayMap();
+			//rerenderEditor();
+
+			
+		if(typeof generated_map[map_element] !== 'undefined') {
+			saveToLocalStorage(var_maps, generated_map);
+		}
+
+		if(typeof ToolElements[0] !== 'undefined') {
+		saveToLocalStorage(var_tools, ToolElements);
+		}
+		//window.location.reload();
+			loadtools();
 			tableCreate();
 		};
 		
@@ -32,13 +62,12 @@ function import_data()
 //<input type="number"  onchange="tableCreate()" id="size_y" name="size_y" value="10">
 //</input></div>
 
-function import_from_local() {
-		if (localStorage.getItem("mapeditor")) {
-			let storaged_map = localStorage.getItem("mapeditor");
-			generated_map = JSON.parse(storaged_map);
-	
-			sizerecalc();
-			tableCreate();
+function import_from_local(item, deflt = false) {
+		if (localStorage.getItem(item)) {
+			let storaged_map = localStorage.getItem(item);
+			return JSON.parse(storaged_map);
+		} else {
+			return deflt;
 		}
 }
 

@@ -50,7 +50,7 @@ input[type="checkbox"] + label
     cursor:pointer;
 }
 
-input[type="file"] + label
+.panel > input[type="file"] + label
 {
    background-size: 32px 32px;
     height: 32px;
@@ -166,13 +166,15 @@ input[type="file"]:checked + label {
 fieldset {
 	border: none;
 	display: inline-flex;
-	padding: unset;
-	margin: unset;
+	padding: 1px;
+	margin: 10px 0px 0px;
+	min-height: 50px;
 }
 
 .tool {
 	display: inline-flex;
 	margin-left: 10px;
+	margin: 13px 0 0;
 }
 
 .mapslist {
@@ -238,13 +240,12 @@ pointer-events: none;
 	position: absolute;
 	top: 100px;
 	left: calc(50% - 300px);
-    width: 100%;
-    max-width: 600px;
-    margin: 10% auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 3px;
-
+	width: 100%;
+	max-width: 600px;
+	margin: 0% auto;
+	padding: 20px;
+	background: #fff;
+	border-radius: 3px;
 }
 
 
@@ -360,4 +361,34 @@ background: #47a;
 .panel > * {
 	display: inline-block;
 }
+}
+
+
+input[id^="tool_"] + label {
+	background-size: contain;
+	width: 20px;
+	height: 20px;
+	opacity: 0.6;
+	margin-left: 0.5rem;
+	transform: rotate(40deg);
+	border: 2px solid black;
+	border-radius: 10px;
+}
+
+.notrans > input + label {
+	transform: unset!important;
+}
+
+input[id^="tool_"]:checked + label {
+		opacity: 1;	
+}
+
+input[id^="map_"] + label {
+	opacity: 0.6;
+	border: 2px solid black;
+	border-radius: 10px;
+}
+
+input[id^="map_"]:checked + label {
+		opacity: 1;	
 }
