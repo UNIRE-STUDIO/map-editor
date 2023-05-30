@@ -1,3 +1,5 @@
+let var_maps = "mapeditor";
+let var_tools = "mapeditor_tools";
 let size_y = 10;
 let size_x = 10;
 let selected_tool = undefined;
@@ -20,8 +22,32 @@ let cellclass = "mapcell";
 let tableid = "map";
 let default_symbol = '_';
 
+let default_tools = [
+	{
+		'name':'lastik',
+		'description':'Ластик',
+		'icon':'assets/img/lastik.png',
+		'key':'e',
+		'symbol':undefined,
+		'color': undefined
+	},
+	{
+		'name':'cursor',
+		'description':'Курсор',
+		'icon':'assets/img/cursor.png',
+		'key':'c',
+		'symbol':undefined,
+		'color': undefined
+	},
+];
 
 document.addEventListener("DOMContentLoaded", (event) => {
+	
+	let ToolElements_check = import_from_local(var_tools, ToolElements);
+
+	if(typeof ToolElements_check !== "undefined") {
+		ToolElements = ToolElements_check;
+	}
 
 	MoskaParser.setDefaultSymbol(default_symbol); 
 	ElementModel.setElements(ToolElements); 
@@ -40,14 +66,25 @@ document.addEventListener("DOMContentLoaded", (event) => {
 	//autosave 60 sec
 	setInterval( () => {
 		if(typeof generated_map[map_element] !== 'undefined') {
-			saveToLocalStorage();
+			saveToLocalStorage(var_maps, generated_map);
 		}
+
+		if(typeof ToolElements[0] !== 'undefined') {
+			saveToLocalStorage(var_tools, ToolElements);
+		}
+
 	}, 60000);
 
 
-	import_from_local();
+	generated_map = import_from_local(var_maps, generated_map);
+	
+	displayMap();
+
+	tableCreate();
+	sizerecalc();
 
 	levelsloader();
+	loadtools();
 
 	console.log(generated_map);
 
@@ -57,8 +94,9 @@ startPencilMode();
 
 
 function clearMap() {
-	localStorage.removeItem("mapeditor");
-
+	localStorage.removeItem(var_maps);
+	localStorage.removeItem(var_tools);
+	
 	window.location.reload();
 }
 
@@ -73,9 +111,9 @@ function clearMap() {
 
 //Создание карты по размеру
 function tableCreate(no_resize = false) {
-
 if(!no_resize)
 	sizerecalc();
+
 
 if(size_y > max_map_size ) {
 	size_y = max_map_size;
@@ -153,6 +191,7 @@ function changeMap(index){
 	map_element = index;
 	levelsloader();
 	tableCreate();
+	loadtools();
 	}
 }
 
@@ -162,12 +201,14 @@ function createMap(){
 	map_element++;
 	levelsloader();
 	tableCreate(true);
+	loadtools();
 }
 
 function changeXSize(){
 	size_x = document.getElementById("size_x").value;
 	displayMap();
 	tableCreate(true);
+	loadtools();
 }
 
 
@@ -175,4 +216,5 @@ function changeYSize(){
 	size_y = document.getElementById("size_y").value; 
 	displayMap();
 	tableCreate(true);
+	loadtools();
 }

@@ -24,15 +24,7 @@
 
 <fieldset id="tools">
 
-<div title="Ластик" class="tool lastik">
-  <input onchange="tool('lastik')" type="radio" id="lastik" value=1 name="tool" />
-  <label for="lastik"></label>
-</div> 
 
-<div title="Курсор" class="tool cursor">
-  <input onchange="tool(cursor)" type="radio" id="cursor" value=1 name="tool" />
-  <label for="cursor"></label>
-</div>
 <!--
 <div title="Первый элемент"  class="tool element1">
   <input onchange="tool('element1')" type="radio" id="element1" value=2 name="tool" />
@@ -58,7 +50,7 @@
 </fieldset>
 
 
-<div title="Испорт" class="tool import">
+<div title="Импорт" class="tool import">
   <input onchange="import_data()" type="file" id="import" name="import" multiple accept=".moska,.json" />
 	<label for="import"></label>
 </div>
@@ -107,10 +99,9 @@
 		<div title="Добавить карту" class="tool createMap">
 			<input onchange="createMap()" type="checkbox" id="createMap" value=6 name="createMap" />
 			<label for="createMap" style="background-image: url('assets/img/addlevel.png')"></label>
-		  </div>
+		</div>
 		  
-		<fieldset id="cmap">
-		</fieldset>
+		<fieldset id="cmap"></fieldset>
 </section>
 	
 
@@ -130,6 +121,14 @@
 		- В центре редактируемая карта<br>
 		- Каждую минуту карта сохраняется в LocalStorage
 		</p>
+		
+	 <a onclick="saveTools()" id="downloadTools">Сохранить инструменты</a>
+	
+	 <div title="Импорт инструментов" class="import_tools">
+		<input onchange="import_tools()" type="file" id="import_tools" name="import_tools" multiple accept=".json" />
+		<label for="import_tools">Импорт инструментов</label>
+	  </div>
+
         <table>
 		<tr>
 			<th>
@@ -351,5 +350,7 @@
 <script>
 	tableCreate();
 </script>
+
+Make with ❤ by <a href="unire.su">Unire Studio</a> for You.
 
 </body>

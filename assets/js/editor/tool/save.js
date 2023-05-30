@@ -1,7 +1,10 @@
 function saveMap(ctrl = false) {
 	
-	saveToLocalStorage();
-	
+	if(typeof generated_map !== 'undefined') {
+		saveToLocalStorage(var_maps, generated_map);
+	}
+
+
 	let dataStr = '';
 	let dlAnchorElem = document.getElementById('downloadAnchorElem');
 
@@ -24,8 +27,25 @@ function saveMap(ctrl = false) {
 		 dlAnchorElem.click();
 };
 
+function saveTools(ctrl = false) {
 
-function saveToLocalStorage() {
-	localStorage.setItem("mapeditor", JSON.stringify(generated_map));
+	if(typeof ToolElements[0] !== 'undefined') {
+		saveToLocalStorage(var_tools, ToolElements);
+	}
+
+	let dataStr = '';
+	let dlAnchorElem = document.getElementById('downloadTools');
+
+	dataStr = "data:text/moska;charset=utf-8," + encodeURIComponent(JsonParser.make(ToolElements));
+	dlAnchorElem.setAttribute("download", "tools.json");
+
+	dlAnchorElem.setAttribute("href", dataStr);
+	if(ctrl)
+		dlAnchorElem.click();
+};
+
+
+function saveToLocalStorage(item, value) {
+	localStorage.setItem(item, JSON.stringify(value));
 }
 

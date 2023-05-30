@@ -72,7 +72,10 @@ function displayMapData(display_mode) {
 
 async function displayMap() {
 //	let result = document.getElementById('result');
-//	result.innerHTML = await displayMapData(display_type);
+//	result.innerHTML = await 
+	//mapSortMode({ "x":"asc", "y":"asc"});
+	mapSortMode({ "x":"asc"});
+	mapSortMode({ "y":"asc"});
 }
 
 async function rerenderEditor() {
@@ -120,38 +123,44 @@ function GenerateMatrixArray() {
 
 	}
 
-
+	let error = false;
+	let error_elem = '';
 	for (index in generated_map[map_element]) {
 		let zelement = generated_map[map_element][index];
 		try {
 		matrix_map[zelement['y']][zelement['x']] = zelement['t'];
 		} catch(e) {
+			error = true;
+			error_elem += '[x'+zelement['x']+', y:' +zelement['y']+']';
 			console.log(e);
 		}
 	}
-
+	if(error) {
+		alert("Элементы выходят за границы карты: " + error_elem);
+	}
+	
 	return matrix_map;
 }
 
 function sizerecalc() {
-	if(typeof generated_map[map_element][0] !== 'undefined') {
-		let syx = generated_map[map_element][(generated_map[map_element].length) -1]['x']; 
-		let syy = generated_map[map_element][(generated_map[map_element].length) -1]['y'];
 
-		document.getElementById("size_x").value = size_x = syx + 1; 
-		document.getElementById("size_y").value = size_y = syy + 1;   
-		
+	let syx = size_x;
+	let syy = size_y;
+	if(typeof generated_map !== 'undefined')
+		if(typeof generated_map[map_element] !== 'undefined') 
+			if(typeof generated_map[map_element][(generated_map[map_element].length)-1] !== 'undefined') {
+	
+			syx = generated_map[map_element][(generated_map[map_element].length) -1]['x'] + 1;
+			syy = generated_map[map_element][(generated_map[map_element].length) -1]['y'] + 1;  
 	}
+
+	document.getElementById("size_x").value = size_x = syx;
+	document.getElementById("size_y").value = size_y = syy;
 }
 
 function levelsloader() {
-	if(typeof generated_map[map_element] !== 'undefined') {
-	
-
-
 
 		let cmap = document.querySelector("fieldset#cmap");
-		let style = '';
 		let cmap2 = '';
 		cmap.innerHTML = '';
 	
@@ -159,39 +168,21 @@ function levelsloader() {
 		if(ToolElements)
 		generated_map.map((x, index) => {
 	
-			let oelement = ToolElements[index];
-	
-			let otool = document.createElement('div');
-			let input = document.createElement('input');
-			let label = document.createElement('label');
 		
 			let title = 'Map '+index;
 			let oname = index;
 		//	let icon = 'assets/img/element_1.png';//oelement['icon'];
 		
 		cmap2 += `
-			<div title="` + title +`" class="mapslist map`+ oname +`">
-	  <input onchange="changeMap('`+ oname +`')" `+(map_element == index ? 'checked' : '')+` type="radio" id="map`+ oname +`" value=`+oname+` name="maplev" />
-	  <label for="map`+ oname +`" style="">`+oname+`</label>
+			<div title="` + title +`" class="mapslist map_`+ oname +`">
+	  <input onchange="changeMap('`+ oname +`')" `+(map_element == index ? 'checked' : '')+` type="radio" id="map_`+ oname +`" value=`+oname+` name="maplev" />
+	  <label for="map_`+ oname +`" style="background-color: `+pickColor(('map'+new Array(oname + 1).join( oname )))+`;">`+oname+`</label>
 	</div>
 	`;
 
-			style += `
-			input#map`+ oname +` + label {
-			background-color: `+pickColor(('map'+new Array(oname + 1).join( oname )))+`;
-			opacity: 0.6;	
-			}
-			input#map`+ oname +`:checked + label {
-				opacity: 1;	
-			}
-			`;
-
 	});
 	
-	cmap.innerHTML = `<style>`+style+`</style>` + cmap2;
-
-	}
-
+	cmap.innerHTML = cmap2;
 
 	
 }

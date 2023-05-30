@@ -1,25 +1,45 @@
-document.addEventListener("DOMContentLoaded", (event) => {
-	
+function loadtools() {
+		
 	let ctools = document.querySelector("fieldset#tools");
+	ctools.innerHTML = '';
 
-	if(ToolElements)
-	  for (index in ToolElements) {
+	loadtoolsFromElem(ctools,default_tools, 'notrans');
+	loadtoolsFromElem(ctools,ToolElements);
+// 	if(typeof ToolElements !== 'undefined')
+// 	  for (index in ToolElements) {
+// 		let otool = document.createElement('div');
+// 		let input = document.createElement('input');
+// 		let label = document.createElement('label');
+			
+// 		let tool = ToolElements[index];
 
-		let oelement = ToolElements[index];
+// 		ctools.innerHTML += maketool(tool['name'], tool['description'], tool['color'], tool['icon']);	
+// }
+
+}
+
+function maketool(name, description, color, icon = false, aditional_class = false) {
+return `
+	<div title="` + description +`" class="tool `+(aditional_class?aditional_class:(`tool_`+ name ))+`">
+<input onchange="tool('`+ name +`')" `+(selected_tool == name ? 'checked' : '')+` type="radio" id="tool_`+ name +`" value=6 name="tool" />
+<label for="tool_`+ name +`" style="background`+(icon !== false ? `-image: url('`+icon+`')` : `-color: `+color+`;`)+`"></label>
+</div>
+`;
+
+
+}
+
+
+function loadtoolsFromElem(ctools, toolslist, aditional_class = false) {
+	if(typeof toolslist !== 'undefined')
+	  for (index in toolslist) {
+
+		let tool = toolslist[index];
 
 		let otool = document.createElement('div');
 		let input = document.createElement('input');
 		let label = document.createElement('label');
-	
-		let title = oelement['description'];
-		let oname = oelement['name'];
-		let icon = oelement['icon'];
-	
-		ctools.innerHTML += `
-		<div title="` + title +`" class="tool `+ oname +`">
-  <input onchange="tool('`+ oname +`')" type="radio" id="`+ oname +`" value=6 name="tool" />
-  <label for="`+ oname +`" style="background-image: url('`+icon+`')"></label>
-</div>
-`;
+		
+		ctools.innerHTML += maketool(tool['name'], tool['description'], tool['color'], tool['icon'],aditional_class);
+	}
 }
-});
