@@ -28,11 +28,6 @@ function saveMap(ctrl = false) {
 };
 
 function saveTools(ctrl = false) {
-
-	if(typeof ToolElements[0] !== 'undefined') {
-		saveToLocalStorage(var_tools, ToolElements);
-	}
-
 	let dataStr = '';
 	let dlAnchorElem = document.getElementById('downloadTools');
 

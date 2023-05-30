@@ -31,17 +31,6 @@ function import_tools()
         {
 			ToolElements = JSON.parse(e.target.result);
 			
-			//displayMap();
-			//rerenderEditor();
-
-			
-		if(typeof generated_map[map_element] !== 'undefined') {
-			saveToLocalStorage(var_maps, generated_map);
-		}
-
-		if(typeof ToolElements[0] !== 'undefined') {
-		saveToLocalStorage(var_tools, ToolElements);
-		}
 		//window.location.reload();
 			loadtools();
 			tableCreate();
