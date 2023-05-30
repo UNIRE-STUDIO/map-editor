@@ -74,8 +74,8 @@ async function displayMap() {
 //	let result = document.getElementById('result');
 //	result.innerHTML = await 
 	//mapSortMode({ "x":"asc", "y":"asc"});
-	mapSortMode({ "x":"asc"});
-	mapSortMode({ "y":"asc"});
+	mapSortMode({ "x":"asc", "y":"asc"});
+
 }
 
 async function rerenderEditor() {
