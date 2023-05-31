@@ -203,9 +203,11 @@ function tool(name){
 	if(name == 'cursor')
 	selected_tool = undefined;	
 	else if (name == 'playlink') { 
-	
+		saveToLocal();
 		timer_play = setTimeout(() =>{
-	window.location.href = play; },
+			
+			window.location.href = play; 
+		},
 	timer_pay_wait);
 	alert('на: '+ play, `Перенаправление...`, {'text':'Отмена', 'onclick':'clearTimeout(timer_play)'});
 	document.querySelector("#tool_playlink").checked = false;
