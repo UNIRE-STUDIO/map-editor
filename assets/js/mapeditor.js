@@ -14,7 +14,7 @@ const max_map_size = 300;
 let cell_size_x = 15;
 let cell_size_y = 15;
 let MoskaParser = FormantMoska;
-
+let play = null;
 
 
 let JsonParser = FormantJson;
@@ -91,6 +91,30 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 //Запуск режима карандаша	
 startPencilMode();
+
+
+//Костыль для возврата в игру
+
+function getParam( name, url = false) {
+    if (!url) url = location.href;
+    name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+    var regexS = "[\\?&]"+name+"=([^&#]*)";
+    var regex = new RegExp( regexS );
+    var results = regex.exec( url );
+    return results == null ? null : results[1];
+}
+let play = getParam('play');
+if(play !== null) {
+	alert('Перенаправление на: '+ play, 'Открытие ссылки');
+	default_tools += {
+		'name':'playlink',
+		'description':'Запуск по ссылке',
+		'icon':'assets/img/playlink.png',
+		'key':'p',
+		'symbol':undefined,
+		'color': undefined
+	}
+}
 });
 
 
@@ -182,7 +206,10 @@ function tool(name){
 	console.log(name);
 	if(name == 'cursor')
 	selected_tool = undefined;	
-	else
+	else if (name == 'playlink') { 
+	window.location.href = play;
+	alert('Перенаправление на: '+ play, 'Открытие ссылки');
+	} else
 	selected_tool = name;
 }
 

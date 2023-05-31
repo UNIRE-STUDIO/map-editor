@@ -396,30 +396,15 @@ input[id^="map_"]:checked + label {
 }
 
 
-
-
-
 * {
 	margin: 0;
 	padding: 0;
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 .alert * {
 	-webkit-tap-highlight-color: transparent;
 	-webkit-touch-callout: none;
-	-ms-touch-action: none;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
