@@ -65,7 +65,7 @@ function hashCode(str) {
   /////////////////// Alerts //////////////////////
   (function(proxied) {
     window.alert = function() {
-        iosAlert(arguments[0], arguments[1]);
+        iosAlert(arguments[0], arguments[1], arguments[2]);
     }
 })(window.alert);
 
@@ -79,10 +79,17 @@ var $alert = document.createElement('span');
 if (arguments[1] == null) {
     arguments[1] = window.location.protocol + '//' + window.location.hostname;
 }
-$alert.innerHTML = '<div class="alert"><div class="inner"><div class="title">' + arguments[1] + '</div><div class="text">' + arguments[0] + '</div></div><div class="button">OK</div></div>';
+let onclick = true;
+let text = 'OK';
+if(typeof arguments[2] !== 'undefined' ) {
+   onclick = arguments[2]['onclick'];
+   text = arguments[2]['text'];
+}
+$alert.innerHTML = '<div class="alert"><div class="inner"><div class="title">' + arguments[1] + '</div><div class="text">' + arguments[0] + '</div></div><a href="#" id="btn" onclick="'+onclick+'"><div class="button">'+text+'</div></div></a>';
 document.querySelector('body').appendChild($alert);
+document.querySelector('.alert > a#btn').focus();
 setTimeout(function() {
-    document.querySelector('.alert .button:last-child').addEventListener("click", function() {
+    document.querySelector('.alert > a#btn').addEventListener("click", function() {
 
         $alert.parentElement.removeChild($alert);
     });

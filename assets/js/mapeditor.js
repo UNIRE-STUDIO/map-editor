@@ -15,8 +15,8 @@ let cell_size_x = 15;
 let cell_size_y = 15;
 let MoskaParser = FormantMoska;
 let play = null;
-
-
+let timer_play = undefined;
+let timer_pay_wait = 700;
 let JsonParser = FormantJson;
 
 let cellclass = "mapcell";
@@ -89,23 +89,27 @@ document.addEventListener("DOMContentLoaded", (event) => {
 	play = getParam('play');
 	if(play !== null) {
 		alert('Добавлено перенаправление на: '+ play, 'Открытие ссылки');
-		default_tools += {
+		default_tools.push({
 			'name':'playlink',
 			'description':'Запуск по ссылке',
 			'icon':'assets/img/playlink.png',
 			'key':'p',
 			'symbol':undefined,
 			'color': undefined
-		}
+		});
 	}
-	});
 
-	loadtools();
-
+		loadtools();
 	console.log(generated_map);
-
-//Запуск режима карандаша	
+	//Запуск режима карандаша	
 startPencilMode();
+
+});
+
+
+
+
+
 
 
 
@@ -199,8 +203,13 @@ function tool(name){
 	if(name == 'cursor')
 	selected_tool = undefined;	
 	else if (name == 'playlink') { 
-	window.location.href = play;
-	alert('Перенаправление на: '+ play, 'Открытие ссылки');
+	
+		timer_play = setTimeout(() =>{
+	window.location.href = play; },
+	timer_pay_wait);
+	alert('на: '+ play, `Перенаправление...`, {'text':'Отмена', 'onclick':'clearTimeout(timer_play)'});
+	document.querySelector("#tool_playlink").checked = false;
+
 	} else
 	selected_tool = name;
 }
