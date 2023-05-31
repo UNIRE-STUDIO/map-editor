@@ -39,6 +39,16 @@ function saveTools(ctrl = false) {
 		dlAnchorElem.click();
 };
 
+function saveToLocal(ctrl = false) {
+	if(typeof generated_map !== 'undefined') {
+		saveToLocalStorage(var_maps, generated_map);
+		alert(var_maps + ' saved');
+	}
+
+	if(typeof ToolElements !== 'undefined') {
+		saveToLocalStorage(var_tools, ToolElements);
+	}
+};
 
 function saveToLocalStorage(item, value) {
 	localStorage.setItem(item, JSON.stringify(value));
