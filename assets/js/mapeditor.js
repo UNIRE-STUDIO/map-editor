@@ -85,6 +85,21 @@ document.addEventListener("DOMContentLoaded", (event) => {
 	sizerecalc();
 
 	levelsloader();
+
+	play = getParam('play');
+	if(play !== null) {
+		alert('Добавлено перенаправление на: '+ play, 'Открытие ссылки');
+		default_tools += {
+			'name':'playlink',
+			'description':'Запуск по ссылке',
+			'icon':'assets/img/playlink.png',
+			'key':'p',
+			'symbol':undefined,
+			'color': undefined
+		}
+	}
+	});
+
 	loadtools();
 
 	console.log(generated_map);
@@ -93,29 +108,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 startPencilMode();
 
 
-//Костыль для возврата в игру
-
-function getParam( name, url = false) {
-    if (!url) url = location.href;
-    name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
-    var regexS = "[\\?&]"+name+"=([^&#]*)";
-    var regex = new RegExp( regexS );
-    var results = regex.exec( url );
-    return results == null ? null : results[1];
-}
-let play = getParam('play');
-if(play !== null) {
-	alert('Перенаправление на: '+ play, 'Открытие ссылки');
-	default_tools += {
-		'name':'playlink',
-		'description':'Запуск по ссылке',
-		'icon':'assets/img/playlink.png',
-		'key':'p',
-		'symbol':undefined,
-		'color': undefined
-	}
-}
-});
 
 
 function clearMap() {

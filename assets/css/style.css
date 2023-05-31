@@ -157,7 +157,7 @@ input[type="file"]:checked + label {
 	padding-right: 20px;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	height:5vh;
+	min-height: ;
 }
 
 
