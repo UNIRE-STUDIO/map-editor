@@ -36,7 +36,7 @@ function import_tools()
 			tableCreate(false,true);
 		};
 		
-        reader.readAsBinaryString(file.files[0]);
+        reader.readAsText(file.files[0]);
     }
 }
 
