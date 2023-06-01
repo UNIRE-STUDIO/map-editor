@@ -435,6 +435,8 @@ input[id^="map_"]:checked + label {
 
 .alert .inner {
 	padding: 15px;
+	overflow: auto;
+    max-height: 300px;
 }
 
 .alert .title {
