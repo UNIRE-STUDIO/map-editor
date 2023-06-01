@@ -28,6 +28,12 @@ function saveMap(ctrl = false) {
 };
 
 function saveTools(ctrl = false) {
+
+	
+	if(typeof ToolElements[0] !== 'undefined') {
+		saveToLocalStorage(var_tools, ToolElements);
+	}
+
 	let dataStr = '';
 	let dlAnchorElem = document.getElementById('downloadTools');
 
@@ -45,7 +51,7 @@ function saveToLocal(ctrl = false) {
 		alert(var_maps + ' saved');
 	}
 
-	if(typeof ToolElements !== 'undefined') {
+	if(typeof ToolElements[0] !== 'undefined') {
 		saveToLocalStorage(var_tools, ToolElements);
 	}
 };

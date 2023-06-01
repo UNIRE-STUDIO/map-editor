@@ -130,10 +130,13 @@ function clearMap() {
 //////////////////////////////////////////////////////
 
 //Создание карты по размеру
-function tableCreate(no_resize = false) {
+function tableCreate(no_resize = false, savetools = false) {
 if(!no_resize)
 	sizerecalc();
-
+if(savetools)
+	if(typeof ToolElements[0] !== 'undefined') {
+		saveToLocalStorage(var_tools, ToolElements);
+	}
 
 if(size_y > max_map_size ) {
 	size_y = max_map_size;

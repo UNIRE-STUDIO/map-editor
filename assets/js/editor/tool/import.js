@@ -33,7 +33,7 @@ function import_tools()
 			
 		//window.location.reload();
 			loadtools();
-			tableCreate();
+			tableCreate(false,true);
 		};
 		
         reader.readAsBinaryString(file.files[0]);
