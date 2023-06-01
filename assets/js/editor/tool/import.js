@@ -15,7 +15,7 @@ function import_data()
 			tableCreate();
 		};
 		
-        reader.readAsBinaryString(file.files[0]);
+        reader.readAsText(file.files[0]);
     }
 }
 
