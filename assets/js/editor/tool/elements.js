@@ -39,5 +39,14 @@
 	'symbol':'&',
 	'color': '#1000F9'
 
+},
+{
+  'name':'rectangle',
+  'description':'Создать контрур',
+  'key':'r',
+  'symbol':'',
+  'icon':'https://cdn-icons-png.flaticon.com/128/8211/8211536.png',
+  'color': '#fff',
+  'callback': "{var x = 0,y = 0, i = 0;for (let iz = 0; iz <= size_y; iz++) {i = iz;x = 0;y = i;generated_map[map_element].push({'t':selected_tool, 'x':Math.abs(Math.round(x)% size_x),'y':Math.abs(Math.round(y) % size_y)});x = size_x-1;y = size_y-1-i;generated_map[map_element].push({'t':selected_tool, 'x':Math.abs(Math.round(x)% size_x),'y':Math.abs(Math.round(y) % size_y)});}for (let iz = 0; iz <= size_x; iz++) {i = iz;x = i;y = 0;generated_map[map_element].push({'t':selected_tool, 'x':Math.abs(Math.round(x)% size_x),'y':Math.abs(Math.round(y) % size_y)});x = size_x-1-i;y = size_y-1;generated_map[map_element].push({'t':selected_tool, 'x':Math.abs(Math.round(x)% size_x),'y':Math.abs(Math.round(y) % size_y)});}tableCreate();}"
 }
 ];

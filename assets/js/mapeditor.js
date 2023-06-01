@@ -39,10 +39,12 @@ let default_tools = [
 		'key':'c',
 		'symbol':undefined,
 		'color': undefined
-	},
+	}
 ];
 
 document.addEventListener("DOMContentLoaded", (event) => {
+	
+
 	
 	let ToolElements_check = import_from_local(var_tools, ToolElements);
 
@@ -78,12 +80,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 
 	generated_map = import_from_local(var_maps, generated_map);
-	
+
 	displayMap();
-
 	tableCreate();
-	sizerecalc();
-
 	levelsloader();
 
 	play = getParam('play');
@@ -182,8 +181,8 @@ if(size_x > max_map_size ) {
   startPencilMode();
 }
  
-function mapSortMode(propOrders) {
-        generated_map[map_element].sort(function (a, b) {
+function mapSortMode(propOrders, map = generated_map) {
+	map[map_element].sort(function (a, b) {
             return SortByProps(a, b, propOrders);
         });
 }

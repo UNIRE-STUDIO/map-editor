@@ -23,8 +23,8 @@ document.querySelector("*").addEventListener('keydown', e => {
 
 	let element_name = ElementModel.getElementByKey(e.key);
 	 if(element_name !== undefined) {
-	document.getElementById(element_name).checked = true;
-	document.getElementById(element_name).dispatchEvent(fake_event);
+	document.getElementById('tool_'+element_name).checked = true;
+	document.getElementById('tool_'+element_name).dispatchEvent(fake_event);
 	 }
 
    });

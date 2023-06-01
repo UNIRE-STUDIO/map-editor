@@ -143,16 +143,21 @@ function GenerateMatrixArray() {
 }
 
 function sizerecalc() {
-
+	let temp_map = generated_map;
 	let syx = size_x;
 	let syy = size_y;
-	if(typeof generated_map !== 'undefined')
-		if(typeof generated_map[map_element] !== 'undefined') 
-			if(typeof generated_map[map_element][(generated_map[map_element].length)-1] !== 'undefined') {
+	if(typeof temp_map !== 'undefined')
+		if(typeof temp_map[map_element] !== 'undefined') 
+			if(typeof temp_map[map_element][(temp_map[map_element].length)-1] !== 'undefined') {
 	
-			syx = generated_map[map_element][(generated_map[map_element].length) -1]['x'] + 1;
-			syy = generated_map[map_element][(generated_map[map_element].length) -1]['y'] + 1;  
+				mapSortMode({ "x":"asc"},temp_map);			
+			syx = temp_map[map_element][(temp_map[map_element].length) -1]['x'] + 1;
+
+				mapSortMode({ "y":"asc"},temp_map);	
+			syy = temp_map[map_element][(temp_map[map_element].length) -1]['y'] + 1;  
 	}
+
+	temp_map = undefined;
 
 	document.getElementById("size_x").value = size_x = syx;
 	document.getElementById("size_y").value = size_y = syy;
