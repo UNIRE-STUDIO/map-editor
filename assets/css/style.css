@@ -52,8 +52,10 @@ input[type="checkbox"] + label
     cursor:pointer;
 }
 
-.panel > input[type="file"] + label
-{
+
+
+
+.panel > input[type="file"] + label {
    background-size: 32px 32px;
     height: 32px;
     width: 32px;
@@ -61,6 +63,8 @@ input[type="checkbox"] + label
     padding: 0 0 0 0px;
     cursor:pointer;
 }
+
+
 
 
 .save > a, .info > a, .clear_map > a
@@ -88,6 +92,17 @@ input[type="checkbox"] + label
     cursor:pointer;
 }
 
+.import > input[type="file"] + label {
+	background-size: 32px 32px;
+	height: 32px;
+	width: 32px;
+	display: inline-block;
+	padding: 0 0 0 0px;
+	cursor: pointer;
+	background-image:url(../img/import.png);
+}
+
+
 input:hover + label, .save > a:hover {
    background-color: #afafaf;
 }
@@ -114,11 +129,6 @@ input[type="file"]:checked + label {
 
 .overflow_blocker > input[type="checkbox"] + label {
 	 background-image:url(../img/block_overflow.png);
-}
-
-
-.import > input[type="file"] + label {
-	 background-image:url(../img/import.png);
 }
 
 
@@ -395,13 +405,6 @@ input[id^="map_"]:checked + label {
 		opacity: 1;	
 }
 
-
-* {
-	margin: 0;
-	padding: 0;
-}
-
-
 .alert * {
 	-webkit-tap-highlight-color: transparent;
 	-webkit-touch-callout: none;
@@ -476,3 +479,5 @@ input[id^="map_"]:checked + label {
 .alert > a {
 	text-decoration: none;
 }
+
+

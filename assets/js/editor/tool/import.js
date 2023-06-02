@@ -12,6 +12,7 @@ function import_data()
 			generated_map = JSON.parse(e.target.result);
 			//displayMap();
 			//rerenderEditor();
+			mapSortMode({ "x":"asc", "y":"asc"});
 			tableCreate();
 		};
 		
@@ -33,7 +34,9 @@ function import_tools()
 			
 		//window.location.reload();
 			loadtools();
+			
 			tableCreate(false,true);
+		
 		};
 		
         reader.readAsText(file.files[0]);
