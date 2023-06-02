@@ -22,7 +22,7 @@
 
 
 	
-		await tableChange(e);
+		 tableChange(e);
 	}
 }
 }
@@ -45,7 +45,7 @@ async function move_draw(e) {
 	if(pencil_mode === true) {
 	
 	
-		await tableChange(e);
+		 tableChange(e);
 	}
 	}
 
@@ -75,7 +75,7 @@ async function move_end(e) {
 
 	
 
-		await tableChange(e);
+		 tableChange(e);
 	}
 
 	}
