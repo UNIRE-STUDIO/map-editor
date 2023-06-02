@@ -65,7 +65,7 @@ function hashCode(str) {
   /////////////////// Alerts //////////////////////
   (function(proxied) {
     window.alert = function() {
-        iosAlert(arguments[0], arguments[1], arguments[2]);
+        iosAlert(arguments[0], arguments[1], arguments[2], arguments[3]);
     }
 })(window.alert);
 
@@ -81,16 +81,22 @@ if (arguments[1] == null) {
 }
 let onclick = true;
 let text = 'OK';
+let timer = 5000;
 if(typeof arguments[2] !== 'undefined' ) {
    onclick = arguments[2]['onclick'];
    text = arguments[2]['text'];
 }
+if(typeof arguments[3] !== 'undefined' ) {
+    timer = Math.round(arguments[3]);
+ }
 $alert.innerHTML = '<div class="alert"><div class="inner"><div class="title">' + arguments[1] + '</div><div class="text">' + arguments[0] + '</div></div><a href="#" id="btn" onclick="'+onclick+'"><div class="button">'+text+'</div></div></a>';
 document.querySelector('body').appendChild($alert);
 document.querySelector('.alert > a#btn').focus();
+
+setTimeout(()=>{if(document.querySelector('.alert')) document.querySelector('.alert').remove()},timer);
+
 setTimeout(function() {
     document.querySelector('.alert > a#btn').addEventListener("click", function() {
-
         $alert.parentElement.removeChild($alert);
     });
 });
