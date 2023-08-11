@@ -35,6 +35,18 @@ const ElementModel = {
 			}
 			return undefined;
 	},
+	elementLoadColors(){
+		let styles = '';
+		for(let i = 0; i < this.logic_elements.length; i++) {
+		
+			let object = this.logic_elements[i];
+				styles += `.`+object['name']+` {
+background-color: `+object['color']+`;
+}
+`;
+		}
+		document.querySelector('#colors').innerHTML = styles;
+	},
 
 	getElementByKey(key) {
 		for(let i = 0; i < this.logic_elements.length; i++) {

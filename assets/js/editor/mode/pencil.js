@@ -1,7 +1,7 @@
  function startPencilMode(){ 
 
 
-	async function start_draw(e) {
+ function start_draw(e) {
 
 		
 	if(pencil_mode === false) {
@@ -27,7 +27,7 @@
 }
 }
 
-async function move_draw(e) {
+ function move_draw(e) {
 	console.log("pm ="+ pencil_mode);
 	
 
@@ -53,7 +53,7 @@ async function move_draw(e) {
 }
 
 
-async function move_end(e) {
+ function move_end(e) {
 
 
 	
@@ -71,10 +71,6 @@ async function move_end(e) {
 	let y = e.target.parentNode.rowIndex;
 	
 	if(e.target.parentNode.rowIndex >= 0) {
-	
-
-	
-
 		 tableChange(e);
 	}
 

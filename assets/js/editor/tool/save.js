@@ -1,8 +1,9 @@
 function saveMap(ctrl = false) {
-	
+	checkMapCorrect(false);
 	if(typeof generated_map !== 'undefined') {
 		saveToLocalStorage(var_maps, generated_map);
 	}
+	
 
 
 	let dataStr = '';
@@ -48,7 +49,7 @@ function saveTools(ctrl = false) {
 function saveToLocal(ctrl = false) {
 	if(typeof generated_map !== 'undefined') {
 		saveToLocalStorage(var_maps, generated_map);
-		alert(var_maps + ' saved');
+		alert(var_maps + ' saved',undefined, undefined, 10000);
 	}
 
 	if(typeof ToolElements[0] !== 'undefined') {

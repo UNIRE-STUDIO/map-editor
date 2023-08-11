@@ -5,6 +5,8 @@ function loadtools() {
 
 	loadtoolsFromElem(ctools,default_tools, 'notrans');
 	loadtoolsFromElem(ctools,ToolElements);
+	ElementModel.setElements(ToolElements);
+	ElementModel.elementLoadColors();
 // 	if(typeof ToolElements !== 'undefined')
 // 	  for (index in ToolElements) {
 // 		let otool = document.createElement('div');
@@ -36,11 +38,32 @@ function loadtoolsFromElem(ctools, toolslist, aditional_class = false) {
 
 		
 		let tool = toolslist[index];
-		tool['callback'] = ((typeof tool['callback'] !== 'undefined') ? tool['callback'] : `tool('`+ tool['name'] +`')`); 
+		let draw = true;
+
+		let callback = (e) => {
+			alert('Метод не опредеён #'+ e.targent.id,undefined, undefined, 10000);
+		};
+
+		draw = typeof tool['symbol'] === 'undefined' ? false : `'`+tool['symbol']+`'`;
+
+
+		if((typeof tool['callback'] !== 'undefined')) {
+
+			if(typeof tool['callback'] == 'string' && tool['callback'][0] !== '(') {
+				tool['callback'] = '()=>'+tool['callback'];
+				console.log('debreacated callback method, please replace {..code..} to ()=>{...code...}');
+			}
+
+			callback = `tool('`+ tool['name'] +`',`+tool['callback']+`, `+draw+`)`;
+	  }else{
+		callback = `tool('`+ tool['name'] +`', false, `+draw+`)`;
+	 } 
+
+
 		let otool = document.createElement('div');
 		let input = document.createElement('input');
 		let label = document.createElement('label');
 		
-		ctools.innerHTML += maketool(tool['callback'], tool['name'], tool['description'], tool['color'], tool['icon'],aditional_class);
+		ctools.innerHTML += maketool(callback, tool['name'], tool['description'], tool['color'], tool['icon'],aditional_class);
 	}
 }

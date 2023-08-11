@@ -481,3 +481,11 @@ input[id^="map_"]:checked + label {
 }
 
 
+.mapcell {
+	border: 1px solid #3F3F3F;
+	background-color: #fff;
+}
+
+#map {
+	border: 1px solid #3F3F3F;
+}

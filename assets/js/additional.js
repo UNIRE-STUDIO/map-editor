@@ -96,6 +96,7 @@ document.querySelector('.alert > a#btn').focus();
 setTimeout(()=>{if(document.querySelector('.alert')) document.querySelector('.alert').remove()},timer);
 
 setTimeout(function() {
+    if(document.querySelector('.alert'))
     document.querySelector('.alert > a#btn').addEventListener("click", function() {
         $alert.parentElement.removeChild($alert);
     });
@@ -112,3 +113,24 @@ function getParam( name, url = false) {
     var results = regex.exec( url );
     return results == null ? null : results[1];
 }
+
+
+function thingsEqual(a, b) {
+    return a.x === b.x
+        && a.y === b.y;
+}
+
+
+function removeDuplicates(arr, equals) {
+    var originalArr = arr.slice(0);
+    var i, len, val;
+    arr.length = 0;
+
+    for (i = 0, len = originalArr.length; i < len; ++i) {
+        val = originalArr[i];
+        if (!arr.some(function(item) { return equals(item, val); })) {
+            arr.push(val);
+        }
+    }
+}
+

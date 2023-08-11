@@ -29,10 +29,11 @@ let default_tools = [
 		'description':'Ластик',
 		'icon':'assets/img/lastik.png',
 		'key':'e',
-		'symbol':undefined,
+		'symbol':'_',
 		'color': undefined
 	},
 	{
+		"callback": ()=> {selected_tool = undefined;},
 		'name':'cursor',
 		'description':'Курсор',
 		'icon':'assets/img/cursor.png',
@@ -68,6 +69,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 	//autosave 60 sec
 	setInterval( () => {
+		checkMapCorrect(false);
 		if(typeof generated_map[map_element] !== 'undefined') {
 			saveToLocalStorage(var_maps, generated_map);
 		}
@@ -87,8 +89,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 	play = getParam('play');
 	if(play !== null) {
-		alert('Добавлено перенаправление на: '+ play, 'Открытие ссылки');
+		alert('Добавлено перенаправление на: '+ play, 'Открытие ссылки',undefined, undefined, 10000);
 		default_tools.push({
+			'callback':(e)=>{
+				saveToLocal();
+				timer_play = setTimeout(() =>{ window.location.href = (play+'?map=[[]]'); },////Нужно бы закодировать и сжать +(JSON.stringify(generated_map)))
+			timer_pay_wait);
+			alert('на: '+ play, 'Перенаправление...', {'text':'Отмена', 'onclick': () => {clearTimeout(timer_play);}}, timer_pay_wait);
+			document.querySelector('#tool_playlink').checked = false;
+			},
 			'name':'playlink',
 			'description':'Запуск по ссылке',
 			'icon':'assets/img/playlink.png',
@@ -141,13 +150,13 @@ if(savetools)
 if(size_y > max_map_size ) {
 	size_y = max_map_size;
 	document.getElementById("size_y").value = max_map_size;
-	alert("max size "+max_map_size+"x"+max_map_size);
+	alert("max size "+max_map_size+"x"+max_map_size,undefined, undefined, 10000);
 } 
 
 if(size_x > max_map_size ) {
 	size_x = max_map_size;
 	document.getElementById("size_x").value = max_map_size;
-	alert("max size "+max_map_size+"x"+max_map_size);
+	alert("max size "+max_map_size+"x"+max_map_size,undefined, undefined, 10000);
 } 
 
  const tbl = document.getElementById(tableid);
@@ -157,21 +166,16 @@ if(size_x > max_map_size ) {
  tbl.style.width = (size_x * (cell_size_x+5)) + 'px';
  tbl.style.height = (size_y * (cell_size_y+5)) + 'px';
 
- tbl.style.border = '1px solid #3F3F3F';
   for (let i = 0; i < size_y; i++) {
     const tr = tbl.insertRow();
     for (let j = 0; j < size_x; j++) {
     
         const td = tr.insertCell();
         td.appendChild(document.createTextNode(` `));
-        td.style.border = '1px solid #3F3F3F';
-		
+        
 		td.className = cellclass;
 		td.id = 'm_'+i+'x'+j;
-		td.style.width = cell_size_x+"px";
-		td.style.height = cell_size_y+"px";
-		td.style.maxWidth = cell_size_x+"px";
-		td.style.maxHeight = cell_size_y+"px";
+
 		//при изменении
 		td.onclick = function (event) {
 			tableChange(event);
@@ -185,37 +189,41 @@ if(size_x > max_map_size ) {
 }
  
 function mapSortMode(propOrders, map = generated_map) {
-	map[map_element].sort(function (a, b) {
+
+	map = requceMapArray(map);
+
+    map[map_element].sort(function (a, b) {
             return SortByProps(a, b, propOrders);
         });
+
+	
+}
+
+function requceMapArray(map) {
+
+	  removeDuplicates(map, thingsEqual);
+	  return map;
 }
 
 
 
-function colSetStyle(col, selected_tool) {
-	let color = ElementModel.elementGetColorByName(selected_tool);
-	if(color !== undefined)
-	col.style.backgroundColor = color;
-}
 
 
 
-function tool(name){
+
+
+ function tool(name, callback = false, draw = true){
 	console.log(name);
-	if(name == 'cursor')
-	selected_tool = undefined;	
-	else if (name == 'playlink') { 
-		saveToLocal();
-		timer_play = setTimeout(() =>{
-			
-			window.location.href = play; 
-		},
-	timer_pay_wait);
-	alert('на: '+ play, `Перенаправление...`, {'text':'Отмена', 'onclick':'clearTimeout(timer_play)'});
-	document.querySelector("#tool_playlink").checked = false;
+	if(callback) {
+		alert("Идёт выполнение callback...","Выполнение " + name,undefined, 10000);
+		isDefTool(name) 
+		callback();
+		setTimeout(()=>{checkMapCorrect();mapSortMode();tableCreate();},1000);
+		
+	}
 
-	} else
-	selected_tool = name;
+	if(draw)
+		selected_tool = name;
 }
 
 
