@@ -80,9 +80,9 @@ function displayMapData(display_mode) {
 
 
  function displayMap() {
-//	let result = document.getElementById('result');
-//	result.innerHTML =  
-	//mapSortMode({ "x":"asc", "y":"asc"});
+let result = document.getElementById('result');
+	result.innerHTML = displayMapData(display_type);
+//		mapSortMode({ "x":"asc", "y":"asc"});
 	//mapSortMode({ "x":"asc", "y":"asc"});
 
 }
