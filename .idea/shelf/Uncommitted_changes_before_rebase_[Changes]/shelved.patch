@@ -1,0 +1,22 @@
+Index: README.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># map editor\r\nThe Map Editor for own mini-games\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/README.md b/README.md
+--- a/README.md	(revision 934719a946ccc7b102c67d7517eeb252ee8ad9ae)
++++ b/README.md	(date 1702938926000)
+@@ -1,2 +1,11 @@
+ # map editor
++
+ The Map Editor for own mini-games
++
++# Гайд по utils/patter_to_tool_build.bat
++
++-   Создаём шаблон, начиная с 0-х координат, копируем его json
++-   Запускаем скрипт, следуем инструкции, при пропуске шагов (Enter) вставляется значение по умолчанию записанное в patter_to_tool.php
++-   После всех шагов в папке скрипта появится файл tool_NAME.json копируем из него код и вставляем в конец файла tools_example/tool.json, перед этим добавляем запятую после предыдущего инструмента, а сам код вставляем перед последним “]”
++-   Валидируем json [jsonlint.com](https://jsonlint.com/)
++-   Если все ок загружаем как инструмент.
