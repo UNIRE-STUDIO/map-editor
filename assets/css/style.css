@@ -146,17 +146,17 @@ input[type="file"]:checked + label {
 }
 
 .panel {
-    position: relative;
-    background-color: white;
-    border: 2px solid #a0a0a0;
-    display: inline-flex;
-    align-items: center;
-    z-index: 100;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    height: 5vh;
+	position: relative;
+	background-color: white;
+	border: 2px solid  #a0a0a0;
+	display: block;
+	align-items:center;
+	z-index: 100;
+	/* padding-left: 20px; */
+	/* padding-right: 20px; */
+	/* padding-top: 10px; */
+	/* padding-bottom: 10px; */
+	height: 5vh;
 }
 
 
