@@ -1,492 +1,497 @@
 body {
-     max-width:100%;
-     max-height:100%;
-     overflow:auto;
+    max-width: 100%;
+    max-height: 100%;
+    overflow: auto;
 }
 
 #map_selector {
-	display: flex;
-	overflow: auto;
+    display: flex;
+    overflow: auto;
 }
 
-input[type="radio"]{
-   display:none;
+input[type="radio"] {
+    display: none;
 }
 
-input[type="checkbox"]{
-   display:none;
+input[type="checkbox"] {
+    display: none;
 }
 
-input[type="file"]{
-   display:none;
+input[type="file"] {
+    display: none;
 }
-
 
 
 input[type="radio"] + label {
-   background-size: 32px 32px;
-   height: 32px;
-   width: 32px;
-   display:inline-block;
-   padding: 0 0 0 0px;
-   cursor:pointer;
-   border-radius: 3px;
-   text-align: center;
-   align-items: center;
-   display: flex;
-   flex-direction: row;
-   font-family: sans-serif;
-   font-weight: 700;
-   justify-content: center;
-   color: white;
-   font-size: 1.5rem;
-}
-
-input[type="checkbox"] + label
-{
-   background-size: 32px 32px;
+    background-size: 32px 32px;
     height: 32px;
     width: 32px;
-    display:inline-block;
+    display: inline-block;
     padding: 0 0 0 0px;
-    cursor:pointer;
+    cursor: pointer;
+    border-radius: 3px;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    font-family: sans-serif;
+    font-weight: 700;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
 }
 
-
+input[type="checkbox"] + label {
+    background-size: 32px 32px;
+    height: 32px;
+    width: 32px;
+    display: inline-block;
+    padding: 0 0 0 0px;
+    cursor: pointer;
+}
 
 
 .panel > input[type="file"] + label {
-   background-size: 32px 32px;
+    background-size: 32px 32px;
     height: 32px;
     width: 32px;
-    display:inline-block;
+    display: inline-block;
     padding: 0 0 0 0px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 
-
-
-.save > a, .info > a, .clear_map > a
-{
-   background-size: 32px 32px;
+.save > a, .info > a, .clear_map > a {
+    background-size: 32px 32px;
     height: 32px;
     width: 32px;
-    display:inline-block;
+    display: inline-block;
     padding: 0 0 0 0px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
-.size_y, .size_x
-{
-   display: flex;
+.size_y, .size_x {
+    display: flex;
 }
 
-.size_y > label, .size_x > label
-{
-   background-size: 32px 32px;
+.size_y > label, .size_x > label {
+    background-size: 32px 32px;
     height: 32px;
     width: 32px;
-    display:inline-block;
+    display: inline-block;
     padding: 0 0 0 0px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .import > input[type="file"] + label {
-	background-size: 32px 32px;
-	height: 32px;
-	width: 32px;
-	display: inline-block;
-	padding: 0 0 0 0px;
-	cursor: pointer;
-	background-image:url(../img/import.png);
+    background-size: 32px 32px;
+    height: 32px;
+    width: 32px;
+    display: inline-block;
+    padding: 0 0 0 0px;
+    cursor: pointer;
+    background-image: url(../img/import.png);
 }
 
 
 input:hover + label, .save > a:hover {
-   background-color: #afafaf;
+    background-color: #afafaf;
 }
 
 input[type="radio"]:checked + label {
-   background-color: #bfbfbf;
+    background-color: #bfbfbf;
 }
 
 input[type="checkbox"]:checked + label {
-   background-color: #bfbfbf;
+    background-color: #bfbfbf;
 }
 
 input[type="file"]:checked + label {
-   background-color: #bfbfbf;
+    background-color: #bfbfbf;
 }
 
 .lastik > input[type="radio"] + label {
-	 background-image:url(../img/lastik.png);    
+    background-image: url(../img/lastik.png);
 }
 
 .cursor > input[type="radio"] + label {
-	 background-image:url(../img/cursor.png);
+    background-image: url(../img/cursor.png);
 }
 
 .overflow_blocker > input[type="checkbox"] + label {
-	 background-image:url(../img/block_overflow.png);
+    background-image: url(../img/block_overflow.png);
 }
 
 
-.size_y > label
-{
-	 background-image:url(../img/size_y.png);
+.size_y > label {
+    background-image: url(../img/size_y.png);
 }
 
-.size_x > label
-{
- background-image:url(../img/size_x.png);
+.size_x > label {
+    background-image: url(../img/size_x.png);
 }
 
 
 .save > a {
-	 background-image:url(../img/save.png);
+    background-image: url(../img/save.png);
 }
 
 .clear_map > a {
-	 background-image:url(../img/clear.png);
+    background-image: url(../img/clear.png);
 }
 
 
 .info > a {
-	 background-image:url(../img/info.png);
+    background-image: url(../img/info.png);
 }
 
 .panel {
-	position: relative;
-	background-color: white;
-	border: 2px solid  #a0a0a0;
-	display: inline-flex;
-	align-items:center;
-	z-index: 100;
-	padding-left: 20px;
-	padding-right: 20px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	height: 5vh;
+    position: relative;
+    background-color: white;
+    border: 2px solid #a0a0a0;
+    display: inline-flex;
+    align-items: center;
+    z-index: 100;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 5vh;
 }
 
 
 .panel > * {
-	display: inline-flex;
+    display: inline-flex;
 }
 
 fieldset {
-	border: none;
-	display: inline-flex;
-	padding: 1px;
-	margin: 10px 0px 0px;
-	min-height: 50px;
+    border: none;
+    display: inline-flex;
+    padding: 1px;
+    margin: 10px 0px 0px;
+    min-height: 50px;
 }
 
 .tool {
-	display: inline-flex;
-	margin-left: 10px;
-	margin: 13px 0 0;
+    display: inline-flex;
+    margin-left: 10px;
+    margin: 13px 0 0;
 }
 
 .mapslist {
-display: inline-block;
-margin-left: 10px;
+    display: inline-block;
+    margin-left: 10px;
 }
 
 .map {
-	overflow: auto;
+    overflow: auto;
 }
 
 table {
-  width: auto;
+    width: auto;
 }
+
 td {
-  position: relative;
+    position: relative;
 }
+
 td .content {
-  aspect-ratio: 1 / 1 ;
+    aspect-ratio: 1 / 1;
 }
 
 #size_x, #size_y {
-	width: 90px;
-	display: inline-flex!important;
+    width: 90px;
+    display: inline-flex !important;
 }
 
 .size_x, .size_y {
-	display: inline-flex!important;
+    display: inline-flex !important;
 }
 
 textarea#result {
-	display: block;
-	position: relative;
-	bottom: 0;
-	width: 100%;
-	height: 17vh;
-	z-index:100;
+    display: block;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 17vh;
+    z-index: 100;
 }
 
 
 .modalbackground {
-margin: 0; 
-padding: 0; 
-position: fixed; 
-top:0;
-bottom:0;
-left:0;
-right:0;
-background: rgba(0,0,0,0.5); 
-z-index:100; 
-opacity:0;
-pointer-events: none;
-	overflow: auto;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    overflow: auto;
 }
 
 
 .modalbackground:target {
-    opacity: 1; 
-    pointer-events: auto; 
+    opacity: 1;
+    pointer-events: auto;
 }
 
 
 .modalwindow {
-	position: absolute;
-	top: 100px;
-	left: calc(50% - 300px);
-	width: 100%;
-	max-width: 600px;
-	margin: 0% auto;
-	padding: 20px;
-	background: #fff;
-	border-radius: 3px;
+    position: absolute;
+    top: 100px;
+    left: calc(50% - 300px);
+    width: 100%;
+    max-width: 600px;
+    margin: 0% auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 3px;
 }
 
 
 .modalwindow h3 {
-padding: 0;
-margin: 0;
+    padding: 0;
+    margin: 0;
 }
 
 
 .modalwindow p {
-padding: 0;
-margin: 4% 0 8% 0;
+    padding: 0;
+    margin: 4% 0 8% 0;
 }
 
 
 .modalwindow a {
-text-align: center;
-text-decoration: none;
+    text-align: center;
+    text-decoration: none;
 }
 
 
 .modalwindow a:hover {
-background: #47a;
+    background: #47a;
 }
 
 .modalwindow .modalheader {
-	display: flex;
-	justify-content: space-between;
-	margin: 10px 10px 0 10px;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 10px 0 10px;
 }
 
 .modalwindow table td, .modalwindow table th, .modalwindow table {
-	border: 1px solid #d2d2d2;
-	padding: 5px;
+    border: 1px solid #d2d2d2;
+    padding: 5px;
 }
 
 #map_container {
-	position: relative;
-	height: 75vh;
-	overflow: auto!important;
-	max-width: 100%;
-	word-wrap:break-word;
+    position: relative;
+    height: 75vh;
+    overflow: auto !important;
+    max-width: 100%;
+    word-wrap: break-word;
 }
 
 
+@media all and (min-width: 960px) and (max-width: 1024px) {
 
-@media all and (min-width:960px) and (max-width: 1024px) {
-	
 }
-@media all and (min-width:801px) and (max-width: 959px) {
-.panel {
-	position: relative;
-	display: block;
-		height: auto;
-			max-width: 100%;
-}
-.panel > * {
-	display: inline-block;
-} 
-}
-@media all and (min-width:769px) and (max-width: 800px) {
-.panel {
-	position: relative;
-	display: block;
-		height: auto;
-			max-width: 100%;
-}
-.panel > * {
-	display: inline-block;
-} 
-}
-@media all and (min-width:569px) and (max-width: 768px) {
-.panel {
-	position: relative;
-	display: block;
-		height: auto;
-			max-width: 100%;
-} 
-.panel > * {
-	display: inline-block;
-}
-}
-@media all and (min-width:481px) and (max-width: 568px) {
-.panel {
-	position: relative;
-	display: block;
-		height: auto;
-			max-width: 100%;
-} 
-.panel > * {
-	display: inline-block;
-}
-}
-@media all and (min-width:321px) and (max-width: 480px) {
-.panel {
-	position: relative;
-	display: block;
-		height: auto;
-			max-width: 100%;
-}
-.panel > * {
-	display: inline-block;
-} 
-}
-@media all and (min-width:0px) and (max-width: 320px) {
-.panel {
-	position: relative;
-	display: block;
-	height: auto;
-	max-width: 100%;
-} 
 
-.panel > * {
-	display: inline-block;
+@media all and (min-width: 801px) and (max-width: 959px) {
+    .panel {
+        position: relative;
+        display: block;
+        height: auto;
+        max-width: 100%;
+    }
+
+    .panel > * {
+        display: inline-block;
+    }
 }
+
+@media all and (min-width: 769px) and (max-width: 800px) {
+    .panel {
+        position: relative;
+        display: block;
+        height: auto;
+        max-width: 100%;
+    }
+
+    .panel > * {
+        display: inline-block;
+    }
+}
+
+@media all and (min-width: 569px) and (max-width: 768px) {
+    .panel {
+        position: relative;
+        display: block;
+        height: auto;
+        max-width: 100%;
+    }
+
+    .panel > * {
+        display: inline-block;
+    }
+}
+
+@media all and (min-width: 481px) and (max-width: 568px) {
+    .panel {
+        position: relative;
+        display: block;
+        height: auto;
+        max-width: 100%;
+    }
+
+    .panel > * {
+        display: inline-block;
+    }
+}
+
+@media all and (min-width: 321px) and (max-width: 480px) {
+    .panel {
+        position: relative;
+        display: block;
+        height: auto;
+        max-width: 100%;
+    }
+
+    .panel > * {
+        display: inline-block;
+    }
+}
+
+@media all and (min-width: 0px) and (max-width: 320px) {
+    .panel {
+        position: relative;
+        display: block;
+        height: auto;
+        max-width: 100%;
+    }
+
+    .panel > * {
+        display: inline-block;
+    }
 }
 
 
 input[id^="tool_"] + label {
-	background-size: contain;
-	width: 20px;
-	height: 20px;
-	opacity: 0.6;
-	margin-left: 0.5rem;
-	transform: rotate(40deg);
-	border: 2px solid black;
-	border-radius: 10px;
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+    opacity: 0.6;
+    margin-left: 0.5rem;
+    transform: rotate(40deg);
+    border: 2px solid black;
+    border-radius: 10px;
 }
 
 .notrans > input + label {
-	transform: unset!important;
+    transform: unset !important;
 }
 
 input[id^="tool_"]:checked + label {
-		opacity: 1;	
+    opacity: 1;
 }
 
 input[id^="map_"] + label {
-	opacity: 0.6;
-	border: 2px solid black;
-	border-radius: 10px;
+    opacity: 0.6;
+    border: 2px solid black;
+    border-radius: 10px;
 }
 
 input[id^="map_"]:checked + label {
-		opacity: 1;	
+    opacity: 1;
 }
 
 .alert * {
-	-webkit-tap-highlight-color: transparent;
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .alert *:focus {
-	outline: 0
+    outline: 0
 }
 
 .alert {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	margin-left: -135px;
-	margin-top: -50px;
-	width: 270px;
-	text-align: center;
-	font-family: -apple-system, SF UI Text, Helvetica Neue, Helvetica, Arial, sans-serif;
-	font-size: 14px;
-	line-height: 1.4;
-	border-radius: 13px;
-	overflow: hidden;
-	z-index: 999999;
-	background-color: rgba(255, 255, 255, 0.8);
-	border: 5px solid #333333;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -135px;
+    margin-top: -50px;
+    width: 270px;
+    text-align: center;
+    font-family: -apple-system, SF UI Text, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    border-radius: 13px;
+    overflow: hidden;
+    z-index: 999999;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 5px solid #333333;
 }
 
 .alert .inner {
-	padding: 15px;
-	overflow: auto;
+    padding: 15px;
+    overflow: auto;
     max-height: 300px;
 }
 
 .alert .title {
-	font-weight: 500;
-	font-size: 18px;
+    font-weight: 500;
+    font-size: 18px;
 }
 
 .alert .text {
-	margin-top: 5px;
+    margin-top: 5px;
 }
 
 .alert .button {
-	text-decoration: none;
-	position: relative;
-	height: 44px;
-	width: 100%;
-	line-height: 44px;
-	font-size: 17px;
-	color: #007aff;
-	border-radius: 0 0 13px 13px;
-	overflow: hidden;
-	cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    height: 44px;
+    width: 100%;
+    line-height: 44px;
+    font-size: 17px;
+    color: #007aff;
+    border-radius: 0 0 13px 13px;
+    overflow: hidden;
+    cursor: pointer;
 }
 
 .alert .button:after {
-	content: '';
-	position: absolute;
-	left: 0;
-	top: 0;
-	height: 1px;
-	width: 100%;
-	display: block;
-	background-color: #c4c4c4;
-	z-index: 999999;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 1px;
+    width: 100%;
+    display: block;
+    background-color: #c4c4c4;
+    z-index: 999999;
 }
 
 .alert > a {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 
 .mapcell {
-	border: 1px solid #3F3F3F;
-	background-color: #fff;
+    border: 1px solid #3F3F3F;
+    background-color: #fff;
 }
 
 #map {
-	border: 1px solid #3F3F3F;
+    border: 1px solid #3F3F3F;
+}
+
+#display {
+    display: inline-flex;
 }
