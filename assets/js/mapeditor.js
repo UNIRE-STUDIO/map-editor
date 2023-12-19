@@ -21,7 +21,6 @@ let JsonParser = FormantJson;
 
 let cellclass = "mapcell";
 let tableid = "map";
-let default_symbol = '_';
 
 let default_tools = [
     {
@@ -54,9 +53,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
         ToolElements = ToolElements_check;
     }
 
-    MoskaParser.setDefaultSymbol(default_symbol);
+    MoskaParser.setDefaultSymbol(default_tools['symbol']);
     ElementModel.setElements(ToolElements);
-    ElementModel.setDefaultSymbol(default_symbol);
+    ElementModel.setDefaultSymbol(default_tools['symbol']);
 
     //Обработка кнопки выбора типа сохранения
     let save_type = document.querySelector("#save_type");
@@ -190,10 +189,11 @@ function mapSortMode(propOrders, map = generated_map) {
 
     map = requceMapArray(map);
 
+    if(map.length >= 1 && map[map_element].length >= 1) {
     map[map_element].sort(function (a, b) {
         return SortByProps(a, b, propOrders);
     });
-
+    }
 
 }
 
@@ -204,12 +204,15 @@ function requceMapArray(map) {
 }
 
 
-function tool(name, callback = false, draw = true) {
-    console.log(name);
+function tool(name, callback = false, draw = false) {
+    
     if (callback) {
-        alert("Идёт выполнение callback...", "Выполнение " + name, undefined, 10000);
-        isDefTool(name)
-        callback();
+//        alert("Идёт выполнение callback...", "Выполнение " + name, undefined, 10);
+        
+         if(!draw && (isDefTool(selected_tool) || typeof selected_tool === 'undefined' || selected_tool == null)) { 
+            console.log("Инструмент не выбран");
+         } else
+            callback();
         setTimeout(() => {
             checkMapCorrect();
             mapSortMode();

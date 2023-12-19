@@ -12,19 +12,15 @@ function tableChange(event) {
 	
 	//Игнор занятых элементов
 	for (var index in generated_map[map_element]) {
-		if(typeof selected_tool !== 'undefined' && selected_tool !== 'lastik' && generated_map[map_element][index].x === x && generated_map[map_element][index].y === y) {
+		if(typeof selected_tool !== 'undefined' && selected_tool !==default_tools[0]['name'] && generated_map[map_element][index].x === x && generated_map[map_element][index].y === y) {
 			skip = true;
 		}
 	}
 	
-	
-	
-	if(!skip) {
-	
-	
+	if(!skip) {	
 		colSetStyle(event.target, selected_tool);	
 		
-		if(typeof selected_tool !== 'undefined' && selected_tool === 'lastik') {
+		if(typeof selected_tool !== 'undefined' && selected_tool === default_tools[0]['name']) {
 	 event.target.className = 'mapcell';
 	for (var index in generated_map[map_element]) {
 		if(generated_map[map_element][index].x === x && generated_map[map_element][index].y === y) {
@@ -34,7 +30,7 @@ function tableChange(event) {
 
 	}
 	
-	if(selected_tool.length >= 1 && selected_tool !== 'lastik')
+	if(selected_tool.length >= 1 && selected_tool !==default_tools[0]['name'])
 		generated_map[map_element].push({'x': x,'y': y,'t':selected_tool});
 
 	
@@ -51,11 +47,38 @@ function tableChange(event) {
 function colSetStyle(col, selected_tool) {
 	//let color = ElementModel.elementGetColorByName(selected_tool);
 //	if(color)
-	col.className = 'mapcell'+(selected_tool === '_' ? '' : ' '+selected_tool) ;//.backgroundColor = color;
+	col.className = 'mapcell'+(selected_tool === default_tools[0]['name'] ? '' : ' '+selected_tool) ;//.backgroundColor = color;
 }
 
 function displayMapData(display_mode) {
 
+generated_map.forEach((genelem, index) => {
+	
+	if(generated_map.length >= 1) {
+	console.log(genelem);
+
+	const jsonArray = genelem;
+
+// Преобразование в одномерный массив
+let flatArray = jsonArray.flat();
+
+// Создание массива для отслеживания уникальных значений x и y
+let uniqueElementsArray = [];
+
+// Фильтрация массива для получения уникальных элементов
+flatArray.forEach(element => {
+  const isUnique = uniqueElementsArray.some(item => item.x === element.x && item.y === element.y);
+  if (!isUnique) {
+    uniqueElementsArray.push(element);
+  }
+});
+		generated_map[index] = uniqueElementsArray;	
+}
+});
+
+
+//	}
+	
 	switch(display_mode){
 	
 	case 'custom':
@@ -82,10 +105,11 @@ function displayMapData(display_mode) {
  function displayMap() {
 let result = document.getElementById('result');
 	result.innerHTML = displayMapData(display_type);
-//		mapSortMode({ "x":"asc", "y":"asc"});
+	 //mapSortMode({ "x":"asc", "y":"asc"});
 	//mapSortMode({ "x":"asc", "y":"asc"});
 
 }
+
 
  function rerenderEditor() {
 	
@@ -99,7 +123,7 @@ let result = document.getElementById('result');
 		
 		let generated_map_rows = matrix_map[i];
 
-		 ElementModel.setDefaultSymbol(default_symbol);
+		 ElementModel.setDefaultSymbol(default_tools[0]['symbol']);
 		 ElementModel.setElements(ToolElements);
 		
 		//todo: не знаю на что влияет, волялось тут, я иубрал
@@ -152,8 +176,8 @@ function GenerateMatrixArray() {
 }
 
 function checkMapCorrect(info = true){
-	if(info)
-	alert("Идёт проверка карты...","Поиск ошибок...", undefined, 1000);
+	//if(info)
+	//alert("Идёт проверка карты...","Поиск ошибок...", undefined, 1000);
 	let error = [false, ''];
 	let map_size = generated_map[map_element].length;
 	map_size = (map_size % 2 == 0) ? (map_size/2) : (map_size/2)-1;
@@ -176,7 +200,7 @@ function checkMapCorrect(info = true){
 
 	if(error[0]) {
 		if(info)
-		alert("Некорректные элементы удалены: " + error[1],undefined,undefined, 1000);
+		alert("Некорректные элементы удалены: " + error[1],undefined,undefined, 10000);
 	}
 	
 }
@@ -210,7 +234,10 @@ function isDefTool(toolname){
 
 	let say = false;
 	default_tools.map((tool) => {
-			if(toolname === tool['name']) {	say = true;return; }		
+			if(toolname === tool['name']) {
+				say = true;
+				return;
+			}
 	});
 	return say;
 }

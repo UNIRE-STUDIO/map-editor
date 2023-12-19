@@ -28,10 +28,10 @@
 }
 
  function move_draw(e) {
-	console.log("pm ="+ pencil_mode);
-	
 
-	if(e.target.className == cellclass) {
+	console.log({"pencil_mode":pencil_mode, "cellclass":cellclass, "e.target.className":e.target.className});
+
+	if(e.target.className.indexOf(cellclass) != -1) {
 	
 		e.preventDefault();
 		
@@ -39,7 +39,10 @@
 	let x = e.target.cellIndex;
 	let y = e.target.parentNode.rowIndex;
 	
+	console.log({"pencil_mode":pencil_mode,"y":y,"x":x,"tool":selected_tool});
 
+	
+		
 	if(e.target.parentNode.rowIndex >= 0) {
 		
 	if(pencil_mode === true) {
