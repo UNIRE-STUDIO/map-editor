@@ -255,21 +255,6 @@ html, body {
     }
 }
 
-.tile-selector {
-    display:block;
-    width:100%;
-    height: calc(100% - 22px);
-    top: 0px;
-}
-
-.tile-list {
-    height: 100%;
-    top: 33px;
-    left: 0px;
-    position: absolute;
-    overflow-y: auto;
-}
-
 .project-item-list {
     height: calc(100% - 32px);
 }
