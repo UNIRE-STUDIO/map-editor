@@ -29,7 +29,7 @@
 
  function move_draw(e) {
 
-	console.log({"pencil_mode":pencil_mode, "cellclass":cellclass, "e.target.className":e.target.className});
+	//console.log({"pencil_mode":pencil_mode, "cellclass":cellclass, "e.target.className":e.target.className});
 
 	if(e.target.className.indexOf(cellclass) != -1) {
 	
@@ -39,7 +39,7 @@
 	let x = e.target.cellIndex;
 	let y = e.target.parentNode.rowIndex;
 	
-	console.log({"pencil_mode":pencil_mode,"y":y,"x":x,"tool":selected_tool});
+//	console.log({"pencil_mode":pencil_mode,"y":y,"x":x,"tool":selected_tool});
 
 	
 		
