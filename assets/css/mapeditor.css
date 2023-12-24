@@ -211,11 +211,12 @@ html, body {
 
 .item-details {
     display: inline-block;
-    height: 150px;
-    width: 100%;
+    /* height: 150px; */
+    /* width: 100%; */
     order: 1;
     .item-name {
-        &:focus {
+        &:
+        focus {
             outline:none;
             background-color: rgb(62, 59, 71);
             border: 1px solid rgb(43, 40, 53);
@@ -245,12 +246,12 @@ html, body {
 
 .group-tools,.layer-tools {
     display: inline-block;
-    top:-152px;
-    height: calc(100% - 100px);
+    top: 0;
+    height: calc(10% - 100px);
     width: 100%;
     order: 2;
     .brush-size {
-        margin-top:-500px;
+        margin-top: 0;
         margin-bottom: 10px;
     }
 }
