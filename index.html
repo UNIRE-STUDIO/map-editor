@@ -40,114 +40,120 @@
                     class="fa fa-trash"></i><span>Удалить</span></a>
         </div>
 
+        <div class="surface btn" id="btn-editor-zout" title="(-) Zoom out" onclick="zoomOut()"><i
+                class="fa fa-search-minus"></i></div>
+        <div class="surface btn" id="btn-editor-zin" title="(+) Zoom in" onclick="zoomIn()"><i
+                class="fa fa-search-plus"></i></div>
+
         <div class="surface btn" id="btn-info" onclick="showAbout()"><i
                 class="fa fa-info"></i><span>О проекте</span></div>
 
+
     </div>
-<div class="workspace">
-    <div class="project">
-        <div class="tab-header">Уровни/Слои</div>
-        <div class="surface tab">
-            <div class="project-tools">
-                <div class="surface btn" id="btn-layer-add" title="Create a layer" onclick="createLayer()"><i
-                        class="fa fa-file-o"> </i></div>
-                <div class="surface btn req-layer" id="btn-layer-remove" title="Remove group or layer"
-                     onclick="removeLayer(this)"><i class="fa fa-trash-o"> </i></div>
-            </div>
-            <div class="project-item-list" id="style-4">
-                <ul class="project-item-tree" id="cmap"></ul>
+    <div class="workspace">
+        <div class="project">
+            <div class="tab-header">Уровни/Слои</div>
+            <div class="surface tab">
+                <div class="project-tools">
+                    <div class="surface btn" id="btn-layer-add" title="Create a layer" onclick="createLayer()"><i
+                            class="fa fa-file-o"> </i></div>
+                    <div class="surface btn req-layer" id="btn-layer-remove" title="Remove group or layer"
+                         onclick="removeLayer(this)"><i class="fa fa-trash-o"> </i></div>
+                </div>
+                <div class="project-item-list" id="style-4">
+                    <ul class="project-item-tree" id="cmap"></ul>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="scene">
-        <div class="tab-header">Редактор карты</div>
-        <div class="surface tab">
-            <div class="editor-container">
-                <div class="editor-tools" id="tools">
-                </div>
-                <div class="surface editor-border">
+        <div class="scene">
+            <div class="tab-header">Редактор карты</div>
+            <div class="surface tab">
+                <div class="editor-container">
+                    <div class="editor-tools" id="tools">
+                    </div>
+                    <div class="surface editor-border">
 
-                    <section id="display">
-                        <section id="map_content">
-                            <section id="map_container">
-                                <table id="map">
-                                </table>
+                        <section id="display">
+                            <section id="map_content">
+                                <section id="map_container">
+                                    <table id="map">
+                                    </table>
+                                </section>
                             </section>
                         </section>
-                    </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="selector">
+            <div class="tab-header">Дополнительно</div>
+            <div class="surface tab inspector">
+                <div class="item-details">
+
+                </div>
+                <div class="group-tools">
+
+                    <!--                    <i class="item-type-icon"></i>-->
+                    <!--                    <input class="item-name"/>-->
+
+                    <p><b>Инструкция к конструктору:</b><br>
+                        - Внизу эрана закреплена панель вывода<br>
+                        - В верху экрана закреплена панель иструментов<br>
+                        - В центре редактируемая карта<br>
+                        - Каждую минуту карта сохраняется в LocalStorage
+                    </p>
+
+
+                    <div title="Количество ячеек" class="tool  input-row">
+                        <label for="cell_size_y">Длина элемента по Y:</label>
+                        <input type="number" onchange="changeXCellSize()" id="cell_size_x" name="cell_size_x"
+                               value="15">
+                    </div>
+
+                    <div title="Количество строк" class="tool  input-row">
+                        <label for="cell_size_y">Длина элемента по X:</label>
+                        <input type="number" onchange="changeYCellSize()" id="cell_size_y" name="cell_size_y"
+                               value="15">
+                    </div>
+                    <br>
+                    <a onclick="saveToLocal()" id="saveToLocal">Сохранить в локальную переменную браузера</a><br/>
+                    <br>
+                    <a onclick="saveTools()" id="downloadTools">Сохранить инструменты</a><br/>
+                    <br>
+                    <div title="Импорт инструментов" class="import_tools">
+                        <input onchange="import_tools()" type="file" id="import_tools" name="import_tools" multiple
+                               accept=".json"/>
+                        <label for="import_tools">Импорт инструментов</label>
+                    </div>
+
+                    <div class="input-row">
+                        <label for="size_x">Количество по X:</label>
+                        <input type="number" onchange="changeXSize()" id="size_x" name="size_x" value="80">
+                    </div>
+                    <div class="input-row">
+                        <label for="size_y">Количество по Y:</label>
+                        <input type="number" onchange="changeYSize()" id="size_y" name="size_y" value="40">
+                    </div>
+
+                    <div class="input-row">
+                        <label for="save_type">Формат сохранения</label>
+                        <select size=1 id="save_type" name="save_type" size="4">
+                            <option value="json" selected="selected">JSON</option>
+                            <option value="custom">Моська v0.1</option>
+                        </select>
+                    </div>
+
+
+                </div>
+                <div class="layer-tools">
+                    <div class="brush-size">
+                        <div class="input-header">Вывод карты</div>
+                        <textarea id="result"></textarea>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="selector">
-        <div class="tab-header">Дополнительно</div>
-        <div class="surface tab inspector">
-            <div class="item-details">
-
-            </div>
-            <div class="group-tools">
-
-                <!--                    <i class="item-type-icon"></i>-->
-                <!--                    <input class="item-name"/>-->
-
-                <p><b>Инструкция к конструктору:</b><br>
-                    - Внизу эрана закреплена панель вывода<br>
-                    - В верху экрана закреплена панель иструментов<br>
-                    - В центре редактируемая карта<br>
-                    - Каждую минуту карта сохраняется в LocalStorage
-                </p>
-
-
-                <div title="Количество ячеек" class="tool  input-row">
-                    <label for="cell_size_y">Длина элемента по Y:</label>
-                    <input type="number" onchange="changeXCellSize()" id="cell_size_x" name="cell_size_x"
-                           value="15">
-                </div>
-
-                <div title="Количество строк" class="tool  input-row">
-                    <label for="cell_size_y">Длина элемента по X:</label>
-                    <input type="number" onchange="changeYCellSize()" id="cell_size_y" name="cell_size_y"
-                           value="15">
-                </div>
-                <br>
-                <a onclick="saveToLocal()" id="saveToLocal">Сохранить в локальную переменную браузера</a><br/>
-                <br>
-                <a onclick="saveTools()" id="downloadTools">Сохранить инструменты</a><br/>
-                <br>
-                <div title="Импорт инструментов" class="import_tools">
-                    <input onchange="import_tools()" type="file" id="import_tools" name="import_tools" multiple
-                           accept=".json"/>
-                    <label for="import_tools">Импорт инструментов</label>
-                </div>
-
-                <div class="input-row">
-                    <label for="size_x">Количество по X:</label>
-                    <input type="number" onchange="changeXSize()" id="size_x" name="size_x" value="80">
-                </div>
-                <div class="input-row">
-                    <label for="size_y">Количество по Y:</label>
-                    <input type="number" onchange="changeYSize()" id="size_y" name="size_y" value="40">
-                </div>
-
-                <div class="input-row">
-                    <label for="save_type">Формат сохранения</label>
-                    <select size=1 id="save_type" name="save_type" size="4">
-                        <option value="json" selected="selected">JSON</option>
-                        <option value="custom">Моська v0.1</option>
-                    </select>
-                </div>
-
-
-            </div>
-            <div class="layer-tools">
-                <div class="brush-size">
-                    <div class="input-header">Вывод карты</div>
-                    <textarea id="result"></textarea>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 </div>
 <div class="window-tint"></div>
 <div class="window surface" id="create-map-window">
