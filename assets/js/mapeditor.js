@@ -190,28 +190,32 @@ function mapSortMode(propOrders, map = generated_map) {
     map = requceMapArray(map);
 
     if(map.length >= 1 && map[map_element].length >= 1) {
-    map[map_element].sort(function (a, b) {
-        return SortByProps(a, b, propOrders);
-    });
+        map[map_element].sort(function (a, b) {
+            return SortByProps(a, b, propOrders);
+        });
     }
 
 }
 
 function requceMapArray(map) {
 
-    removeDuplicates(map, thingsEqual);
+    removeDuplicates(map[map_element], thingsEqual);
     return map;
 }
 
 
 function tool(name, callback = false, draw = false) {
-    
+
+
+
+
+
     if (callback) {
 //        alert("Идёт выполнение callback...", "Выполнение " + name, undefined, 10);
-        
-         if(!draw && (isDefTool(selected_tool) || typeof selected_tool === 'undefined' || selected_tool == null)) { 
+
+        if(!draw && (isDefTool(selected_tool) || typeof selected_tool === 'undefined' || selected_tool == null)) {
             console.log("Инструмент не выбран");
-         } else
+        } else
             callback();
         setTimeout(() => {
             checkMapCorrect();
@@ -239,6 +243,10 @@ function changeMap(index) {
 function createMap() {
     generated_map.push([]);
     map_element++;
+
+    console.log(generated_map);
+    console.log(map_element);
+
     levelsloader();
     tableCreate(true);
     loadtools();
