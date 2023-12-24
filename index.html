@@ -3,114 +3,265 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/mapeditor.css" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style id="colors">
 
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"/>
 </head>
-<body id="page">
 
-<section class="panel">
-
-
-    <div title="Количество ячеек" class="tool size_x">
-        <label for="size_x"></label>
-
-        <input type="number" onchange="changeXSize()" id="size_x" name="size_x" value="10">
-    </div>
-
-    <div title="Количество строк" class="tool size_y">
-        <label for="size_y"></label>
-        <input type="number" onchange="changeYSize()" id="size_y" name="size_y" value="10">
-    </div>
-
-
-    <fieldset id="tools">
-
-
-        <!--
-        <div title="Первый элемент"  class="tool element1">
-          <input onchange="tool('element1')" type="radio" id="element1" value=2 name="tool" />
-          <label for="element1"></label>
+<div class="app">
+    <div class="menu">
+        <div title="Импорт" class="surface btn">
+            <input onchange="import_data()" type="file" id="import" name="import" multiple
+                   accept=".moska,.json"/>
+            <label for="import"><i
+                    class="fa fa-folder-open"> </i><span>Загрузить</span></label>
         </div>
-        <div title="Второй элемент"  class="tool element2">
-          <input onchange="tool('element2')" type="radio" id="element2" value=3 name="tool" />
-          <label for="element2"></label>
+
+        <div title="Сохранение" class="surface btn">
+            <a onclick="saveMap()" id="downloadAnchorElem"><i
+                    class="fa fa-save"></i><span>Сохранить</span></a>
         </div>
-        <div title="Третий элемент" class="tool element3">
-          <input onchange="tool('element3')" type="radio" id="element3" value=4 name="tool" />
-          <label for="element3"></label>
+
+
+        <div title="Блокировка прокрутки" class="surface btn">
+            <input onchange="overflow_blocker()" placeholder="Блокировка прокрутки" type="checkbox"
+                   id="overflow_blocker"
+                   name="overflow_blocker">
+            <label for="overflow_blocker"><i
+                    class="fa fa-lock"></i><span>Блокировка прокрутки</span></label>
         </div>
-        <div title="Четвертый элемент" class="tool element4">
-          <input onchange="tool('element4')" type="radio" id="element4" value=5 name="tool" />
-          <label for="element4"></label>
+
+        <div title="Удаление карты" class="surface btn">
+            <a onclick="clearMap()" id="clear_map"><i
+                    class="fa fa-trash"></i><span>Удалить</span></a>
         </div>
-        <div title="Пятый элемент" class="tool element5">
-          <input onchange="tool('element5')" type="radio" id="element5" value=6 name="tool" />
-          <label for="element5"></label>
-        </div>
-        -->
-    </fieldset>
 
-
-    <div title="Импорт" class="tool import">
-        <input onchange="import_data()" type="file" id="import" name="import" multiple accept=".moska,.json"/>
-        <label for="import"></label>
-    </div>
-
-    <div title="Сохранение" class="tool save">
-        <a onclick="saveMap()" id="downloadAnchorElem"></a>
-    </div>
-
-    <div title="Тип сохранения" class="tool save_type">
-
-        <label for="save_type"></label>
-        <select size=1 id="save_type" name="save_type" size="4">
-            <option value="json" selected="selected">JSON</option>
-            <option value="custom">Моська v0.1</option>
-        </select>
+        <div class="surface btn" id="btn-info" onclick="showAbout()"><i
+                class="fa fa-info"></i><span>О проекте</span></div>
 
     </div>
-
-
-    <div title="Блокировка прокрутки" class="tool overflow_blocker">
-        <input onchange="overflow_blocker()" placeholder="Блокировка прокрутки" type="checkbox" id="overflow_blocker"
-               name="overflow_blocker">
-        <label for="overflow_blocker"></label>
-    </div>
-
-    <div title="Удаление карты" class="tool clear_map">
-        <a onclick="clearMap()" id="clear_map"></a>
-    </div>
-
-    <div title="Справка" class="tool info">
-        <a href="#info"></a>
-    </div>
-
-
-</section>
-
-<section id="display">
-    <section id="map_content">
-        <section id="map_container">
-            <table id="map">
-            </table>
-        </section>
-        <section id="map_selector">
-
-            <div title="Добавить карту" class="tool createMap">
-                <input onchange="createMap()" type="checkbox" id="createMap" value=6 name="createMap"/>
-                <label for="createMap" style="background-image: url('assets/img/addlevel.png')"></label>
+<div class="workspace">
+    <div class="project">
+        <div class="tab-header">Уровни/Слои</div>
+        <div class="surface tab">
+            <div class="project-tools">
+                <div class="surface btn" id="btn-layer-add" title="Create a layer" onclick="createLayer()"><i
+                        class="fa fa-file-o"> </i></div>
+                <div class="surface btn req-layer" id="btn-layer-remove" title="Remove group or layer"
+                     onclick="removeLayer(this)"><i class="fa fa-trash-o"> </i></div>
             </div>
+            <div class="project-item-list" id="style-4">
+                <ul class="project-item-tree" id="cmap"></ul>
+            </div>
+        </div>
+    </div>
+    <div class="scene">
+        <div class="tab-header">Редактор карты</div>
+        <div class="surface tab">
+            <div class="editor-container">
+                <div class="editor-tools" id="tools">
+                </div>
+                <div class="surface editor-border">
 
-            <fieldset id="cmap"></fieldset>
-        </section>
-    </section>
-</section>
+                    <section id="display">
+                        <section id="map_content">
+                            <section id="map_container">
+                                <table id="map">
+                                </table>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="selector">
+        <div class="tab-header">Дополнительно</div>
+        <div class="surface tab inspector">
+            <div class="item-details">
+
+            </div>
+            <div class="group-tools">
+
+                <!--                    <i class="item-type-icon"></i>-->
+                <!--                    <input class="item-name"/>-->
+
+                <p><b>Инструкция к конструктору:</b><br>
+                    - Внизу эрана закреплена панель вывода<br>
+                    - В верху экрана закреплена панель иструментов<br>
+                    - В центре редактируемая карта<br>
+                    - Каждую минуту карта сохраняется в LocalStorage
+                </p>
 
 
-<textarea id="result">
-</textarea>
+                <div title="Количество ячеек" class="tool  input-row">
+                    <label for="cell_size_y">Длина элемента по Y:</label>
+                    <input type="number" onchange="changeXCellSize()" id="cell_size_x" name="cell_size_x"
+                           value="15">
+                </div>
+
+                <div title="Количество строк" class="tool  input-row">
+                    <label for="cell_size_y">Длина элемента по X:</label>
+                    <input type="number" onchange="changeYCellSize()" id="cell_size_y" name="cell_size_y"
+                           value="15">
+                </div>
+                <br>
+                <a onclick="saveToLocal()" id="saveToLocal">Сохранить в локальную переменную браузера</a><br/>
+                <br>
+                <a onclick="saveTools()" id="downloadTools">Сохранить инструменты</a><br/>
+                <br>
+                <div title="Импорт инструментов" class="import_tools">
+                    <input onchange="import_tools()" type="file" id="import_tools" name="import_tools" multiple
+                           accept=".json"/>
+                    <label for="import_tools">Импорт инструментов</label>
+                </div>
+
+                <div class="input-row">
+                    <label for="size_x">Количество по X:</label>
+                    <input type="number" onchange="changeXSize()" id="size_x" name="size_x" value="80">
+                </div>
+                <div class="input-row">
+                    <label for="size_y">Количество по Y:</label>
+                    <input type="number" onchange="changeYSize()" id="size_y" name="size_y" value="40">
+                </div>
+
+                <div class="input-row">
+                    <label for="save_type">Формат сохранения</label>
+                    <select size=1 id="save_type" name="save_type" size="4">
+                        <option value="json" selected="selected">JSON</option>
+                        <option value="custom">Моська v0.1</option>
+                    </select>
+                </div>
+
+
+            </div>
+            <div class="layer-tools">
+                <div class="brush-size">
+                    <div class="input-header">Вывод карты</div>
+                    <textarea id="result"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="window-tint"></div>
+<div class="window surface" id="create-map-window">
+    <div class="window-title-bar">
+        <h4>New map</h4>
+        <div class="surface btn" onclick="cancelCreateMap()"><i class="fa fa-close"></i></div>
+    </div>
+    <div class="window-body">
+        <p>Warning: Creating a new map will discard your current progress!</p>
+        <div class="input-header">Select perspective</div>
+        <div class="input-row">
+            <input class="map-perspective" id="p-2d-default" name="map-perspective" type="radio" value="top"
+                   checked="checked"/>
+            <label for="p-2d-default">2D default</label>
+        </div>
+        <div class="input-row">
+            <input class="map-perspective" id="p-2d-isometric" name="map-perspective" value="iso" type="radio"/>
+            <label for="p-2d-isometric">2D isometric</label>
+        </div>
+        <div class="newline"></div>
+        <div class="input-header">Map/grid size</div>
+        <div class="input-row">
+            <label for="input-map-width">Width :</label>
+            <input type="text" placeholder="eg. 32" id="input-map-width"/>
+        </div>
+        <div class="input-row">
+            <label for="input-map-height">Height:</label>
+            <input type="text" placeholder="eg. 32" id="input-map-height"/>
+        </div>
+    </div>
+    <div class="window-actions">
+        <div class="surface btn" onclick="cancelCreateMap()">Cancel</div>
+        <div class="surface btn" onclick="createLayer()">OK</div>
+    </div>
+</div>
+<div class="window surface" id="load-map-window">
+    <div class="window-title-bar">
+        <h4>Load map</h4>
+        <div class="surface btn" onclick="cancelLoadMap()"><i class="fa fa-close"></i></div>
+    </div>
+    <div class="window-body">
+        <p>Warning: Loading a map will discard your current progress!</p>
+        <div class="input-header">Paste your map data here (not implemented)</div>
+        <div class="input-row">
+            <textarea placeholder="Paste your map data here" id="input-map-data"></textarea>
+        </div>
+    </div>
+    <div class="window-actions">
+        <div class="surface btn" onclick="cancelLoadMap()">Cancel</div>
+        <div class="surface btn" onclick="openMap()">OK</div>
+    </div>
+</div>
+
+<!--<body id="page">-->
+
+<!--<section class="panel">-->
+
+
+<!--    <div title="Количество ячеек" class="tool size_x">-->
+<!--        <label for="size_x"></label>-->
+
+<!--        <input type="number" onchange="changeXSize()" id="size_x" name="size_x" value="10">-->
+<!--    </div>-->
+
+<!--    <div title="Количество строк" class="tool size_y">-->
+<!--        <label for="size_y"></label>-->
+<!--        <input type="number" onchange="changeYSize()" id="size_y" name="size_y" value="10">-->
+<!--    </div>-->
+
+
+<!--    <fieldset id="tools">-->
+
+
+<!--        &lt;!&ndash;-->
+<!--        <div title="Первый элемент"  class="tool element1">-->
+<!--          <input onchange="tool('element1')" type="radio" id="element1" value=2 name="tool" />-->
+<!--          <label for="element1"></label>-->
+<!--        </div>-->
+<!--        <div title="Второй элемент"  class="tool element2">-->
+<!--          <input onchange="tool('element2')" type="radio" id="element2" value=3 name="tool" />-->
+<!--          <label for="element2"></label>-->
+<!--        </div>-->
+<!--        <div title="Третий элемент" class="tool element3">-->
+<!--          <input onchange="tool('element3')" type="radio" id="element3" value=4 name="tool" />-->
+<!--          <label for="element3"></label>-->
+<!--        </div>-->
+<!--        <div title="Четвертый элемент" class="tool element4">-->
+<!--          <input onchange="tool('element4')" type="radio" id="element4" value=5 name="tool" />-->
+<!--          <label for="element4"></label>-->
+<!--        </div>-->
+<!--        <div title="Пятый элемент" class="tool element5">-->
+<!--          <input onchange="tool('element5')" type="radio" id="element5" value=6 name="tool" />-->
+<!--          <label for="element5"></label>-->
+<!--        </div>-->
+<!--        &ndash;&gt;-->
+<!--    </fieldset>-->
+
+
+<!--    <div title="Тип сохранения" class="tool save_type">-->
+
+<!--        <label for="save_type"></label>-->
+<!--        <select size=1 id="save_type" name="save_type" size="4">-->
+<!--            <option value="json" selected="selected">JSON</option>-->
+<!--            <option value="custom">Моська v0.1</option>-->
+<!--        </select>-->
+
+<!--    </div>-->
+
+
+<!--</section>-->
+
+
+<!--<textarea id="result">-->
+<!--</textarea>-->
 
 
 <div id="info" class="modalbackground">
@@ -119,170 +270,11 @@
             <b>Справка</b>
             <a href="#">Закрыть</a>
         </div>
-        <p><b>Инструкция к конструктору:</b><br>
-            - Внизу эрана закреплена панель вывода<br>
-            - В верху экрана закреплена панель иструментов<br>
-            - В центре редактируемая карта<br>
-            - Каждую минуту карта сохраняется в LocalStorage
-        </p>
 
-
-        <div title="Количество ячеек" class="tool size_x">
-            <label for="cell_size_y"></label>
-
-            <input type="number" onchange="changeXCellSize()" id="cell_size_x" name="cell_size_x" value="15">
-        </div>
-
-        <div title="Количество строк" class="tool size_y">
-            <label for="cell_size_y"></label>
-            <input type="number" onchange="changeYCellSize()" id="cell_size_y" name="cell_size_y" value="15">
-        </div>
-        <br/><br/>
-
-        <a onclick="saveToLocal()" id="saveToLocal">Сохранить в локальную переменную браузера</a><br/>
-
-        <a onclick="saveTools()" id="downloadTools">Сохранить инструменты</a><br/>
-
-        <div title="Импорт инструментов" class="import_tools">
-            <input onchange="import_tools()" type="file" id="import_tools" name="import_tools" multiple accept=".json"/>
-            <label for="import_tools">Импорт инструментов</label>
-        </div>
-
-        <table>
-            <tr>
-                <th>
-                    Элемент
-                </th>
-                <th>
-                    Описание
-                </th>
-                <th>
-                    Клавиша
-                </th>
-            </tr>
-            <tr>
-                <td>
-                    <img src="assets/img/size_x.png" alt=""/>
-                </td>
-                <td>
-                    Количество ячеек
-                </td>
-                <td>
-                    Нет
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <img src="assets/img/size_y.png" alt=""/>
-                </td>
-                <td>
-                    Количество строк
-                </td>
-                <td>
-                    Нет
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <img src="assets/img/lastik.png" alt=""/>
-                </td>
-                <td>
-                    Удаление заполнения из ячеек
-                </td>
-                <td>
-                    E
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <img src="assets/img/cursor.png" alt=""/>
-                </td>
-                <td>
-                    Очистка выбранного элемента
-                </td>
-                <td>
-                    Нет
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <img src="assets/img/import.png" alt=""/>
-                </td>
-                <td>
-                    Загрузить данные
-                </td>
-                <td>
-                    Нет
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <img src="assets/img/save.png" alt=""/>
-                </td>
-                <td>
-                    Сохранить результат
-                </td>
-                <td>
-                    CTRL + S
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <img src="assets/img/save_type.png" alt=""/>
-                </td>
-                <td>
-                    Формат сохранения (и отображения)
-                </td>
-                <td>
-                    Нет
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <img src="assets/img/block_overflow.png" alt=""/>
-                </td>
-                <td>
-                    Блокировка прокруток (удобно на сенсорных устройствах)
-                </td>
-                <td>
-                    Нет
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <img src="assets/img/clear.png" alt=""/>
-                </td>
-                <td>
-                    Сбросить карту до значения "по умолчанию".
-                </td>
-                <td>
-                    Нет
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <img src="assets/img/info.png" alt=""/>
-                </td>
-                <td>
-                    Текущая справка
-                </td>
-                <td>
-                    Нет
-                </td>
-            </tr>
-        </table>
 
     </div>
 </div>
+<script src="assets/js/newedtor.js"></script>
 <script src="assets/js/additional.js"></script>
 
 <script src="assets/js/editor/tool/elements.js"></script>
@@ -307,12 +299,10 @@
 
 <script>
     tableCreate();
-
-
 </script>
 
-Made with ❤ by <a href="unire.su">Unire Studio</a> for You.
+<!--Made with ❤ by <a href="unire.su">Unire Studio</a> for You.-->
 
 
-</body>
+<!--</body>-->
 

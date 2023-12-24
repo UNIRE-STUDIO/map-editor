@@ -41,14 +41,14 @@ input[type="radio"] + label {
     font-size: 1.5rem;
 }
 
-/*input[type="checkbox"] + label {*/
-/*    background-size: 32px 32px;*/
-/*    height: 32px;*/
-/*    width: 32px;*/
-/*    display: inline-block;*/
-/*    padding: 0 0 0 0px;*/
-/*    cursor: pointer;*/
-/*}*/
+input[type="checkbox"] + label {
+    background-size: 32px 32px;
+    height: 32px;
+    width: 32px;
+    display: inline-block;
+    padding: 0 0 0 0px;
+    cursor: pointer;
+}
 
 
 .panel > input[type="file"] + label {
@@ -75,9 +75,9 @@ input[type="radio"] + label {
 }
 
 .size_y > label, .size_x > label {
-    background-size: 32px 32px;
-    height: 32px;
-    width: 32px;
+    /* background-size: 32px 32px; */
+    /* height: 32px; */
+    /* width: 32px; */
     display: inline-block;
     padding: 0 0 0 0px;
     cursor: pointer;
@@ -118,6 +118,11 @@ input[type="file"]:checked + label {
     background-image: url(../img/cursor.png);
 }
 
+.overflow_blocker > input[type="checkbox"] + label {
+    background-image: url(../img/block_overflow.png);
+}
+
+
 .size_y > label {
     background-image: url(../img/size_y.png);
 }
@@ -126,8 +131,18 @@ input[type="file"]:checked + label {
     background-image: url(../img/size_x.png);
 }
 
+
+.save > a {
+    background-image: url(../img/save.png);
+}
+
 .clear_map > a {
     background-image: url(../img/clear.png);
+}
+
+
+.info > a {
+    background-image: url(../img/info.png);
 }
 
 .panel {
@@ -193,21 +208,13 @@ td .content {
     display: inline-flex !important;
 }
 
-input, select {
-    background-color: rgb(38,37,43);
-    color: #fff;
-}
-
 textarea#result {
     display: block;
     position: relative;
     bottom: 0;
     width: 100%;
-    height: 43vh;
+    height: 17vh;
     z-index: 100;
-    font-size: 10px;
-    background-color: rgb(38,37,43);
-    color: #fff;
 }
 
 
@@ -283,8 +290,9 @@ textarea#result {
     position: relative;
     height: 88vh;
     overflow: auto !important;
-    max-width: 75vw;
+    max-width: 79vw;
     word-wrap: break-word;
+    overflow: auto;
 }
 
 
@@ -373,13 +381,13 @@ textarea#result {
 
 input[id^="tool_"] + label {
     background-size: contain;
-    width: 30px;
-    height: 30px;
-    /*opacity: 0.3;*/
-    /*margin-left: 0.5rem;*/
-    /*transform: rotate(40deg);*/
-    /*border: 2px solid black;*/
-    /*border-radius: 10px;*/
+    width: 20px;
+    height: 20px;
+    opacity: 0.6;
+    margin-left: 0.5rem;
+    transform: rotate(40deg);
+    border: 2px solid black;
+    border-radius: 10px;
 }
 
 .notrans > input + label {
@@ -387,17 +395,17 @@ input[id^="tool_"] + label {
 }
 
 input[id^="tool_"]:checked + label {
-    /*opacity: 0.3;*/
-    border:3px solid rgb(255, 255, 255);
+    opacity: 1;
 }
 
 input[id^="map_"] + label {
-    opacity: 1;
+    opacity: 0.6;
+    border: 2px solid black;
     border-radius: 10px;
 }
 
 input[id^="map_"]:checked + label {
-    border:3px solid rgb(255, 255, 255);
+    opacity: 1;
 }
 
 .alert * {

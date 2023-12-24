@@ -53,9 +53,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
         ToolElements = ToolElements_check;
     }
 
-    MoskaParser.setDefaultSymbol(default_tools['symbol']);
+    MoskaParser.setDefaultSymbol(default_tools[0]['symbol']);
     ElementModel.setElements(ToolElements);
-    ElementModel.setDefaultSymbol(default_tools['symbol']);
+    ElementModel.setDefaultSymbol(default_tools[0]['symbol']);
 
     //Обработка кнопки выбора типа сохранения
     let save_type = document.querySelector("#save_type");
@@ -114,6 +114,23 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
 
     loadtools();
+
+    // Получаем все элементы, id которых начинаются с "btn-editor-"
+    var buttons = document.querySelectorAll('[id^="btn-editor-"]');
+
+// Добавляем обработчик события клика на каждый из них
+    buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            // Удаляем класс active у всех элементов
+            buttons.forEach(function (btn) {
+                btn.classList.remove('active');
+            });
+
+            // Добавляем класс active к элементу, на который был совершен клик
+            this.classList.add('active');
+        });
+    });
+
     console.log(generated_map);
     //Запуск режима карандаша
     startPencilMode();
@@ -189,7 +206,7 @@ function mapSortMode(propOrders, map = generated_map) {
 
     map = requceMapArray(map);
 
-    if(map.length >= 1 && map[map_element].length >= 1) {
+    if (map.length >= 1 && map[map_element].length >= 1) {
         map[map_element].sort(function (a, b) {
             return SortByProps(a, b, propOrders);
         });
@@ -207,26 +224,26 @@ function requceMapArray(map) {
 function tool(name, callback = false, draw = false) {
 
 
-
-
-
     if (callback) {
 //        alert("Идёт выполнение callback...", "Выполнение " + name, undefined, 10);
 
-        if(!draw && (isDefTool(selected_tool) || typeof selected_tool === 'undefined' || selected_tool == null)) {
+        if (!draw && (isDefTool(selected_tool) || typeof selected_tool === 'undefined' || selected_tool == null)) {
             console.log("Инструмент не выбран");
         } else
             callback();
         setTimeout(() => {
+
             checkMapCorrect();
             mapSortMode();
-            tableCreate();
+            tableCreate(true);
         }, 1000);
 
     }
 
-    if (draw)
+
+    if (draw) {
         selected_tool = name;
+    }
 }
 
 
@@ -234,19 +251,24 @@ function changeMap(index) {
     if (typeof generated_map[index] !== 'undefined') {
         map_element = index;
         levelsloader();
-        tableCreate();
+        tableCreate(true);
         loadtools();
     }
 }
 
 
-function createMap() {
+function createLayer() {
     generated_map.push([]);
     map_element++;
 
-    console.log(generated_map);
-    console.log(map_element);
+    levelsloader();
+    tableCreate(true);
+    loadtools();
+}
 
+function removeLayer() {
+
+    generated_map.splice(map_element, 1);
     levelsloader();
     tableCreate(true);
     loadtools();
@@ -269,15 +291,46 @@ function changeYSize() {
 
 
 function changeXCellSize() {
-    cell_size_x = document.getElementById("cell_size_x").value;
+    cell_size_x = Number(document.getElementById("cell_size_x").value);
     displayMap();
     tableCreate(true);
     loadtools();
 }
 
 function changeYCellSize() {
-    cell_size_y = document.getElementById("cell_size_y").value;
+    cell_size_y = Number(document.getElementById("cell_size_y").value);
     displayMap();
     tableCreate(true);
     loadtools();
+}
+
+function zoomOut() {
+    let y = document.getElementById("cell_size_y");
+    let x = document.getElementById("cell_size_x");
+    cell_size_y = Number(y.value) - 1;
+    cell_size_x = Number(x.value) - 1;
+    y.value = cell_size_y;
+    x.value = cell_size_x;
+    displayMap();
+    tableCreate(true);
+    loadtools();
+}
+
+
+function zoomIn() {
+    let y = document.getElementById("cell_size_y");
+    let x = document.getElementById("cell_size_x");
+    cell_size_y = Number(y.value) + 1;
+    cell_size_x = Number(x.value) + 1;
+    y.value = cell_size_y;
+    x.value = cell_size_x;
+
+    displayMap();
+    tableCreate(true);
+    loadtools();
+}
+
+
+function showAbout() {
+    alert('Developer: nazbav<br>Interface: <a href="https://codepen.io/TranquilityDev/pen/geWxWO">https://codepen.io/TranquilityDev/pen/geWxWO</a><br>Made with ❤ by <a href=\'unire.su\'>Unire Studio</a> for You.');
 }
